@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,7 +12,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using MySql.Data.MySqlClient;
+using static CipherView.FetchData;
+using System.Diagnostics;
 
 namespace CipherView
 {
@@ -21,19 +23,71 @@ namespace CipherView
     public partial class Dashboard
     {
         public string? ConnectedIpAddress { get; set; }
+        public string? WindowStatus { get; set; }
+        public string ColorBar { get; set; } = "Green";
 
         public Dashboard()
         {
             InitializeComponent();
 
             ConnectedIpAddress = MainWindow.ConnectAddress;
+            WindowStatus = "MySQL Connection was successful.";
             DataContext = this;
+
+            try
+            {
+                var people = FetchData.Fetcher();
+
+                if (people != null)
+                {
+                    PeopleGrid.ItemsSource = people;
+                    Thread.Sleep(1000);
+                    WindowStatus = "Data fetched successfully.";
+                }
+            }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void Button_Settings(object sender, RoutedEventArgs e)
         {
             var settingsWindow = new Settings();
             settingsWindow.Show();
+        }
+
+        private void Button_SignOut(object sender, RoutedEventArgs e)
+        {
+            var mainWindow = new MainWindow();
+            mainWindow.Show();
+            this.Close();
+        }
+
+        private void PeopleGrid_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            if (PeopleGrid.SelectedItem is FetchedData selected)
+            {
+                var detailsWindow = new SelectedPerson(selected);
+                detailsWindow.ShowDialog();
+            }
+        }
+
+        private void Button_About(object sender, RoutedEventArgs e)
+        {
+            var url = "https://github.com/absolutegoaat";
+            try
+            {
+                Process.Start(new ProcessStartInfo
+                {
+                    FileName = url,
+                    UseShellExecute = true
+                });
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Failed to open URL: {ex.Message}");
+            }
         }
     }
 }
