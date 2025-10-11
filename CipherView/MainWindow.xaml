@@ -6,20 +6,22 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CipherView"
         mc:Ignorable="d"
-        Title="CipherView - Login" Height="410" Width="677">
+        WindowStartupLocation="CenterScreen"
+        Title="CipherView - Login" Height="406" Width="738">
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" MinHeight="276"/>
+            <RowDefinition Height="Auto" MinHeight="276.3"/>
             <!-- Menu row -->
             <RowDefinition/>
             <!-- Content row - takes remaining space -->
         </Grid.RowDefinitions>
 
-        <Label Content="IP Address" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-        <TextBox x:Name="SQLAddress" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,153,0,0" Width="205" Height="26"/>
-        <Label Content="Password" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,184,0,0"/>
-        <PasswordBox x:Name="SQLPassword" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,208,0,0" Width="205" Height="26"/>
+        <Button Content="FAQ" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10,0,0" Click="Button_FAQ" Height="27" Width="31"/>
+        <Label Content="IP Address" HorizontalAlignment="Center" VerticalAlignment="Center" Height="26" Width="66"/>
+        <TextBox x:Name="SQLAddress" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,153,0,0" Width="206" Height="26"/>
+        <Label Content="Password" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,184,0,0" Height="26" Width="60"/>
+        <PasswordBox x:Name="SQLPassword" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,208,0,0" Width="206" Height="26"/>
         <Button Content="Connect" HorizontalAlignment="Center" Width="76" Margin="0,249,0,0" Click="Button_Click"/>
     </Grid>
 </mah:MetroWindow>

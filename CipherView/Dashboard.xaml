@@ -4,9 +4,13 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:controlzex="urn:controlzex"
         xmlns:local="clr-namespace:CipherView"
         mc:Ignorable="d"
-        Title="CipherView - Dashboard" Height="450" Width="800">
+        Title="CipherView - Dashboard" Height="451" Width="913" 
+        WindowStartupLocation="CenterScreen" 
+        WindowState="Maximized">
+
     <Grid>
         <mah:MetroAnimatedSingleRowTabControl>
             <TabItem Header="Dashboard">
@@ -18,7 +22,10 @@
                         <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
 
-                    <mah:MetroHeader FontSize="38px" HorizontalAlignment="Center" VerticalAlignment="Top">Welcome to CipherView</mah:MetroHeader>
+                    <mah:MetroHeader FontSize="38px" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,32,0,0">Welcome to CipherView</mah:MetroHeader>
+
+                    <mah:MetroHeader FontSize="20px" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,100,0,0">Quick Actions</mah:MetroHeader>
+                    <Button Content="Add New Entry" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,150,0,0" Width="120"/>
                 </Grid>
             </TabItem>
             <TabItem Header="Database">
@@ -35,8 +42,11 @@
         </mah:MetroAnimatedSingleRowTabControl>
 
         <StatusBar VerticalAlignment="Bottom" Background="Green" Foreground="White">
-            <StatusBarItem>Host: </StatusBarItem>
+            <StatusBarItem>Host:</StatusBarItem>
             <StatusBarItem Content="{Binding ConnectedIpAddress}"/>
+            <Separator Style="{StaticResource MahApps.Styles.Separator.StatusBar}" />
+            <StatusBarItem>Port: 3306</StatusBarItem>
+            <!--ill add an option to connect to any port-->
         </StatusBar>
     </Grid>
 </mah:MetroWindow>

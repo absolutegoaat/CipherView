@@ -52,5 +52,12 @@ namespace CipherView
                 MessageBox.Show(ex.Message);
             }
         }
+
+        private void Button_FAQ(object sender, RoutedEventArgs e)
+        {
+            const string message = "Q: Why isn't my CipherStorm Credentials working like web?\n" +
+                                   "A: We're using MySQL Credentials not Cipherstorm Credentials on web. Please ask your local admin in charge of CipherStorm Web to give you a password to the MySQL Server.\n\n";
+            MessageBox.Show(message, "FAQ", MessageBoxButton.OK, MessageBoxImage.Information);
+        }
     }
 }
