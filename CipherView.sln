@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36414.22 d17.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CipherView", "CipherView\CipherView.csproj", "{FC06715C-A93F-4A4F-B275-FEEA4ADA0B91}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FC06715C-A93F-4A4F-B275-FEEA4ADA0B91}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FC06715C-A93F-4A4F-B275-FEEA4ADA0B91}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FC06715C-A93F-4A4F-B275-FEEA4ADA0B91}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FC06715C-A93F-4A4F-B275-FEEA4ADA0B91}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {3FA64C4A-D97D-4770-B4F2-53F1A9C9E4EA}
+	EndGlobalSection
+EndGlobal
