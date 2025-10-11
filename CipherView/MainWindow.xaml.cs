@@ -30,7 +30,7 @@ namespace CipherView
             ConnectAddress = SQLAddress.Text;
             string password = SQLPassword.Password;
 
-            MySql.Data.MySqlClient.MySqlConnection conn = new MySql.Data.MySqlClient.MySqlConnection();
+            MySql.Data.MySqlClient.MySqlConnection conn = new();
             string ConnectionString;
 
             ConnectionString = $"server={ConnectAddress};uid=root;" + $"pwd={password};database=cipherstorm";
@@ -44,8 +44,6 @@ namespace CipherView
                 var dashboard = new Dashboard();
                 dashboard.Show();
                 this.Close();
-
-                MessageBox.Show("Connection Successful", "CipherView", MessageBoxButton.OK, MessageBoxImage.Information);
             }
             catch (MySql.Data.MySqlClient.MySqlException ex)
             {
@@ -58,6 +56,12 @@ namespace CipherView
             const string message = "Q: Why isn't my CipherStorm Credentials working like web?\n" +
                                    "A: We're using MySQL Credentials not Cipherstorm Credentials on web. Please ask your local admin in charge of CipherStorm Web to give you a password to the MySQL Server.\n\n";
             MessageBox.Show(message, "FAQ", MessageBoxButton.OK, MessageBoxImage.Information);
+        }
+        
+        private void Button_Settings(object sender, RoutedEventArgs e)
+        {
+            var settingsWindow = new Settings();
+            settingsWindow.Show();
         }
     }
 }

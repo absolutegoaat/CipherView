@@ -4,12 +4,17 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:controlzex="urn:controlzex"
         xmlns:local="clr-namespace:CipherView"
         mc:Ignorable="d"
         Title="CipherView - Dashboard" Height="451" Width="913" 
         WindowStartupLocation="CenterScreen" 
         WindowState="Maximized">
+
+    <mah:MetroWindow.RightWindowCommands>
+        <mah:WindowCommands>
+            <Button Content="Settings" Click="Button_Settings" Margin="0,0,10,0"/>
+        </mah:WindowCommands>
+    </mah:MetroWindow.RightWindowCommands>
 
     <Grid>
         <mah:MetroAnimatedSingleRowTabControl>
@@ -36,6 +41,8 @@
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
+
+                    <DataGrid x:Name="DatabaseDataGrid" AutoGenerateColumns="True" IsReadOnly="False" ItemsSource="{Binding PeopleData}" Margin="10" Grid.Row="0"/>
 
                 </Grid>
             </TabItem>

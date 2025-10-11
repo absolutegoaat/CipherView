@@ -8,6 +8,11 @@
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
         Title="CipherView - Login" Height="406" Width="738">
+    <mah:MetroWindow.RightWindowCommands>
+        <mah:WindowCommands>
+            <Button Content="Settings" Click="Button_Settings" Margin="0,0,10,0"/>
+        </mah:WindowCommands>
+    </mah:MetroWindow.RightWindowCommands>
 
     <Grid>
         <Grid.RowDefinitions>

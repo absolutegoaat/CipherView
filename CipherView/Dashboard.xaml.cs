@@ -29,5 +29,11 @@ namespace CipherView
             ConnectedIpAddress = MainWindow.ConnectAddress;
             DataContext = this;
         }
+
+        private void Button_Settings(object sender, RoutedEventArgs e)
+        {
+            var settingsWindow = new Settings();
+            settingsWindow.Show();
+        }
     }
 }
