@@ -14,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using static CipherView.FetchData;
 using System.Diagnostics;
+using ControlzEx;
 
 namespace CipherView
 {
@@ -24,12 +25,13 @@ namespace CipherView
     {
         public string? ConnectedIpAddress { get; set; }
         public string? WindowStatus { get; set; }
-        public string ColorBar { get; set; } = "Green";
+        public string? ColorBar { get; set; }
 
         public Dashboard()
         {
             InitializeComponent();
 
+            ColorBar = "Blue";
             ConnectedIpAddress = MainWindow.ConnectAddress;
             WindowStatus = "MySQL Connection was successful.";
             DataContext = this;
@@ -41,7 +43,6 @@ namespace CipherView
                 if (people != null)
                 {
                     PeopleGrid.ItemsSource = people;
-                    Thread.Sleep(1000);
                     WindowStatus = "Data fetched successfully.";
                 }
             }
@@ -49,10 +50,13 @@ namespace CipherView
             {
                 MessageBox.Show(ex.Message);
             }
+
+            ColorBar = "Green";
         }
 
         private void Button_Settings(object sender, RoutedEventArgs e)
         {
+            WindowStatus = "User Loaded Settings";
             var settingsWindow = new Settings();
             settingsWindow.Show();
         }

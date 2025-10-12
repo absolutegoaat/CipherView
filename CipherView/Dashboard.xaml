@@ -16,7 +16,7 @@
             <Button Click="Button_About" ToolTip="CipherView">
                 <iconPacks:PackIconModern Width="22"
                                   Height="22"
-                                  Kind="WeatherRain" />
+                                  Kind="Eye" />
             </Button>
         </mah:WindowCommands>
     </mah:MetroWindow.LeftWindowCommands>
@@ -64,9 +64,7 @@
                             <DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="Auto"/>
                             <DataGridTextColumn Header="Name" Binding="{Binding name}" Width="*"/>
                             <DataGridTextColumn Header="Email" Binding="{Binding email}" Width="*"/>
-                            <DataGridTextColumn Header="Address" Binding="{Binding address}" Width="*"/>
                             <DataGridTextColumn Header="Phone" Binding="{Binding phone}" Width="*"/>
-                            <DataGridTextColumn Header="IP Address" Binding="{Binding ipaddress}" Width="2*"/>
                             <DataGridTextColumn Header="Convicted" Binding="{Binding ConvictedDisplay}" Width="3*"/>
                         </DataGrid.Columns>
                     </DataGrid>
@@ -83,7 +81,6 @@
             <Separator Style="{StaticResource MahApps.Styles.Separator.StatusBar}" />
             <StatusBarItem>Status -</StatusBarItem>
             <StatusBarItem Content="{Binding WindowStatus}"/>
-            <mah:MetroProgressBar IsEnabled="{Binding ProgressBarOn}"/>
         </StatusBar>
     </Grid>
 </mah:MetroWindow>
