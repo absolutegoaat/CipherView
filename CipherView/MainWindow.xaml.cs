@@ -29,6 +29,9 @@ namespace CipherView
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            var buffer = new Buffer();
+            buffer.Show();
+
             ConnectAddress = SQLAddress.Text;
             Sqlpassword = SQLPassword.Password;
 
@@ -45,6 +48,8 @@ namespace CipherView
 
                 var dashboard = new Dashboard();
                 dashboard.Show();
+
+                buffer.Close();
                 this.Close();
             }
             catch (MySql.Data.MySqlClient.MySqlException ex)
