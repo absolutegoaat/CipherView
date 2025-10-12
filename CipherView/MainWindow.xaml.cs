@@ -20,6 +20,8 @@ namespace CipherView
     {
         public static string? ConnectAddress { get; set; }
 
+        public static string? Sqlpassword { get; set; }
+
         public MainWindow()
         {
             InitializeComponent();
@@ -28,12 +30,12 @@ namespace CipherView
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             ConnectAddress = SQLAddress.Text;
-            string password = SQLPassword.Password;
+            Sqlpassword = SQLPassword.Password;
 
             MySql.Data.MySqlClient.MySqlConnection conn = new();
             string ConnectionString;
 
-            ConnectionString = $"server={ConnectAddress};uid=root;" + $"pwd={password};database=cipherstorm";
+            ConnectionString = $"server={ConnectAddress};uid=root;" + $"pwd={Sqlpassword};database=cipherstorm";
 
             try
             {
