@@ -19,6 +19,7 @@ namespace CipherView
             public string? phone { get; set; }
             public string? email { get; set; }
             public string? ipaddress { get; set; }
+            public string? labels { get; set; }
             public string? description { get; set; }
             public int convicted { get; set; }
             public string? socials { get; set; }
@@ -40,7 +41,7 @@ namespace CipherView
                 conn = new MySqlConnection();
                 conn.ConnectionString = ConnectionString;
                 conn.Open();
-                string query = "SELECT * FROM predators";
+                string query = "SELECT * FROM people";
                 MySqlCommand cmd = new(query, conn);
                 MySqlDataReader reader = cmd.ExecuteReader();
                 while (reader.Read())
@@ -53,6 +54,7 @@ namespace CipherView
                         phone = reader.GetString("phone"),
                         email = reader.GetString("email"),
                         ipaddress = reader.GetString("ipaddress"),
+                        //labels = reader.GetString("label"), 
                         description = reader.GetString("description"),
                         convicted = reader.GetInt32("convicted"),
                         socials = reader.GetString("socials")
@@ -69,6 +71,11 @@ namespace CipherView
                 MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return null;
             }
+        }
+
+        public static void EditData()
+        {
+            // blah blah blah
         }
     }
 }
