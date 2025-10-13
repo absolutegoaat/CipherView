@@ -45,6 +45,18 @@
                     <TextBox Text="{Binding socials}" IsReadOnly="True" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,35,10,0" Height="193" Width="554"/>
                 </Grid>
             </TabItem>
+            <TabItem Header="Edit">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    
+                    <!--doing this later kind of tired rn plus im not doing bs about uhhh editing sql stuff on mysql-->
+                </Grid>
+            </TabItem>
         </mah:MetroAnimatedSingleRowTabControl>
     </Grid>
 </mah:MetroWindow>
