@@ -1,74 +1,129 @@
-﻿using System.Net;
-using System.Text;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using MySql.Data.MySqlClient;
+<mah:MetroWindow x:Class="CipherView.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:mah="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CipherView"
+        mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
+        Title="CipherView - Login"
+        Height="406"
+        Width="738"
+        ResizeMode="NoResize"
+        Background="{DynamicResource WindowBackground}">
 
-namespace CipherView
-{
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
-    public partial class MainWindow
-    {
-        public static string? ConnectAddress { get; set; }
+    <mah:MetroWindow.Resources>
+        <LinearGradientBrush x:Key="LightBackground" StartPoint="0,0" EndPoint="0,1">
+            <GradientStop Color="#E9EEF7" Offset="0.0"/>
+            <GradientStop Color="#D8E3F3" Offset="1.0"/>
+        </LinearGradientBrush>
 
-        public static string? Sqlpassword { get; set; }
+        <LinearGradientBrush x:Key="DarkBackground" StartPoint="0,0" EndPoint="0,1">
+            <GradientStop Color="#1E1E1E" Offset="0.0"/>
+            <GradientStop Color="#2B2B2B" Offset="1.0"/>
+        </LinearGradientBrush>
 
-        public MainWindow()
-        {
-            InitializeComponent();
-        }
+        <StaticResource ResourceKey="LightBackground" x:Key="WindowBackground"/>
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            var buffer = new Buffer();
-            buffer.Show();
+        <Style x:Key="ClassicButton" TargetType="Button">
+            <Setter Property="Background" Value="#E4EBF7"/>
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="BorderBrush" Value="#A9B9D9"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="FontFamily" Value="Segoe UI"/>
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="Padding" Value="4,2"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Effect">
+                <Setter.Value>
+                    <DropShadowEffect Color="#A0B0D0" BlurRadius="4" ShadowDepth="1" Opacity="0.2"/>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" 
+                                BorderBrush="{TemplateBinding BorderBrush}" 
+                                BorderThickness="{TemplateBinding BorderThickness}" 
+                                CornerRadius="3">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#D0E2FF"/>
+                                <Setter Property="BorderBrush" Value="#7FA8E5"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Background" Value="#BBD1F7"/>
+                                <Setter Property="BorderBrush" Value="#5E87C9"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
 
-            ConnectAddress = SQLAddress.Text;
-            Sqlpassword = SQLPassword.Password;
+        <Style x:Key="ClassicTextBox" TargetType="TextBox">
+            <Setter Property="BorderBrush" Value="#A9B9D9"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="Padding" Value="3"/>
+            <Style.Triggers>
+                <Trigger Property="IsKeyboardFocusWithin" Value="True">
+                    <Setter Property="BorderBrush" Value="#6FA8DC"/>
+                    <Setter Property="Effect">
+                        <Setter.Value>
+                            <DropShadowEffect Color="#6FA8DC" BlurRadius="6" ShadowDepth="0" Opacity="0.5"/>
+                        </Setter.Value>
+                    </Setter>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
 
-            MySql.Data.MySqlClient.MySqlConnection conn = new();
-            string ConnectionString;
+        <Style x:Key="ClassicPasswordBox" TargetType="PasswordBox">
+            <Setter Property="BorderBrush" Value="#A9B9D9"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="Padding" Value="3"/>
+            <Style.Triggers>
+                <Trigger Property="IsKeyboardFocusWithin" Value="True">
+                    <Setter Property="BorderBrush" Value="#6FA8DC"/>
+                    <Setter Property="Effect">
+                        <Setter.Value>
+                            <DropShadowEffect Color="#6FA8DC" BlurRadius="6" ShadowDepth="0" Opacity="0.5"/>
+                        </Setter.Value>
+                    </Setter>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </mah:MetroWindow.Resources>
 
-            ConnectionString = $"server={ConnectAddress};uid=root;" + $"pwd={Sqlpassword};database=cipherstorm";
+    <Grid Background="{DynamicResource WindowBackground}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
 
-            try
-            {
-                conn = new MySql.Data.MySqlClient.MySqlConnection();
-                conn.ConnectionString = ConnectionString;
-                conn.Open();
+        <StackPanel VerticalAlignment="Top" Margin="0,40,0,0" HorizontalAlignment="Center">
+            <TextBlock Text="CipherView Login" FontFamily="Segoe UI Semibold" FontSize="24" Foreground="#2C4D85" Margin="0,0,0,20"/>
+            <Rectangle Fill="#9BB4E9" Height="2" Width="180"/>
+        </StackPanel>
 
-                var dashboard = new Dashboard();
-                dashboard.Show();
+        <StackPanel VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,111,0,0">
+            <Label Content="IP Address:" FontSize="13" FontWeight="Bold" Foreground="#2C4D85" Margin="0,0,0,4"/>
+            <TextBox x:Name="SQLAddress" Width="220" Height="28" Margin="0,0,0,10" Style="{StaticResource ClassicTextBox}"/>
+            <Label Content="Password:" FontSize="13" FontWeight="Bold" Foreground="#2C4D85" Margin="0,0,0,4"/>
+            <PasswordBox x:Name="SQLPassword" Width="220" Height="28" Margin="0,0,0,10" Style="{StaticResource ClassicPasswordBox}"/>
+            <Button Content="Connect" Width="100" Height="27" Margin="0,10,0,0" Style="{StaticResource ClassicButton}" Click="Button_Click"/>
+        </StackPanel>
 
-                buffer.Close();
-                this.Close();
-            }
-            catch (MySql.Data.MySqlClient.MySqlException ex)
-            {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-        }
-
-        private void Button_FAQ(object sender, RoutedEventArgs e)
-        {
-            const string message = "Q: Why isn't my CipherStorm Credentials working like web?\n" +
-                                   "A: We're using MySQL Credentials not Cipherstorm Credentials on web. Please ask your local admin in charge of CipherStorm Web to give you a password to the MySQL Server.\n\n";
-            MessageBox.Show(message, "FAQ", MessageBoxButton.OK, MessageBoxImage.Information);
-        }
-        
-        private void Button_Settings(object sender, RoutedEventArgs e)
-        {
-            var settingsWindow = new Settings();
-            settingsWindow.Show();
-        }
-    }
-}
+        <DockPanel Grid.Row="1" Margin="10">
+            <ToggleButton x:Name="DarkModeToggle" Content="🌙 Dark Mode" Width="100" Height="25" DockPanel.Dock="Left" Style="{StaticResource ClassicButton}" Checked="DarkModeToggle_Checked" Unchecked="DarkModeToggle_Unchecked"/>
+            <Button Content="FAQ" DockPanel.Dock="Left" Width="50" Height="25" Margin="5,0,0,0" Style="{StaticResource ClassicButton}" Click="Button_FAQ"/>
+            <TextBlock Text="© 2025 Blazar Systems" HorizontalAlignment="Right" VerticalAlignment="Center" Foreground="#5577A9" FontSize="11"/>
+        </DockPanel>
+    </Grid>
+</mah:MetroWindow>
