@@ -1,30 +1,20 @@
-﻿using System.Net;
-using System.Text;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using MySql.Data.MySqlClient;
 
 namespace CipherView
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
     public partial class MainWindow
     {
         public static string? ConnectAddress { get; set; }
-
         public static string? Sqlpassword { get; set; }
+
+        private bool _isDarkMode;
 
         public MainWindow()
         {
             InitializeComponent();
+            _isDarkMode = false;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -35,24 +25,20 @@ namespace CipherView
             ConnectAddress = SQLAddress.Text;
             Sqlpassword = SQLPassword.Password;
 
-            MySql.Data.MySqlClient.MySqlConnection conn = new();
-            string ConnectionString;
-
-            ConnectionString = $"server={ConnectAddress};uid=root;" + $"pwd={Sqlpassword};database=cipherstorm";
+            string connectionString = $"server={ConnectAddress};uid=root;pwd={Sqlpassword};database=cipherstorm";
 
             try
             {
-                conn = new MySql.Data.MySqlClient.MySqlConnection();
-                conn.ConnectionString = ConnectionString;
+                using var conn = new MySqlConnection(connectionString);
                 conn.Open();
 
                 var dashboard = new Dashboard();
                 dashboard.Show();
 
                 buffer.Close();
-                this.Close();
+                Close();
             }
-            catch (MySql.Data.MySqlClient.MySqlException ex)
+            catch (MySqlException ex)
             {
                 MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
@@ -60,15 +46,39 @@ namespace CipherView
 
         private void Button_FAQ(object sender, RoutedEventArgs e)
         {
-            const string message = "Q: Why isn't my CipherStorm Credentials working like web?\n" +
-                                   "A: We're using MySQL Credentials not Cipherstorm Credentials on web. Please ask your local admin in charge of CipherStorm Web to give you a password to the MySQL Server.\n\n";
+            const string message =
+                "Q: Why isn't my CipherStorm Credentials working like web?\n" +
+                "A: We're using MySQL Credentials not Cipherstorm Credentials on web. " +
+                "Please ask your local admin in charge of CipherStorm Web to give you a password to the MySQL Server.\n\n";
+
             MessageBox.Show(message, "FAQ", MessageBoxButton.OK, MessageBoxImage.Information);
         }
-        
+
         private void Button_Settings(object sender, RoutedEventArgs e)
         {
             var settingsWindow = new Settings();
             settingsWindow.Show();
+        }
+
+        private void ToggleDarkMode_Click(object sender, RoutedEventArgs e)
+        {
+            _isDarkMode = !_isDarkMode;
+
+            var bg = _isDarkMode ? new SolidColorBrush(Color.FromRgb(25, 25, 25)) : new SolidColorBrush(Color.FromRgb(240, 240, 240));
+            var fg = _isDarkMode ? new SolidColorBrush(Colors.White) : new SolidColorBrush(Colors.Black);
+
+            Background = bg;
+            Foreground = fg;
+
+            foreach (var element in LogicalTreeHelper.GetChildren(this))
+            {
+                if (element is FrameworkElement fe)
+                {
+                    fe.Foreground = fg;
+                    if (fe is Panel panel)
+                        panel.Background = bg;
+                }
+            }
         }
     }
 }
