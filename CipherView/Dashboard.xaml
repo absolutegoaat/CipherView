@@ -30,12 +30,6 @@
 
     <mah:MetroWindow.RightWindowCommands>
         <mah:WindowCommands>
-            <ToggleButton x:Name="DarkModeToggle"
-                          Content="🌙 Dark Mode"
-                          Style="{DynamicResource MahApps.Styles.Button.Flat}"
-                          Padding="8,2"
-                          Checked="DarkModeToggle_Checked"
-                          Unchecked="DarkModeToggle_Unchecked"/>
             <Button Content="Settings"
                     Click="Button_Settings"
                     Style="{DynamicResource MahApps.Styles.Button.Flat}"
@@ -48,30 +42,24 @@
     </mah:MetroWindow.RightWindowCommands>
 
     <Grid>
-        <Border Margin="20"
-                CornerRadius="10"
-                BorderBrush="{DynamicResource MahApps.Brushes.Control.Border}"
-                BorderThickness="1"
-                Background="{DynamicResource MahApps.Brushes.Control.Background}">
-
-            <mah:MetroAnimatedSingleRowTabControl>
-                <TabItem Header="Dashboard">
-                    <Grid Margin="15">
-                        <TextBlock Text="Welcome to CipherView"
+        <mah:MetroAnimatedSingleRowTabControl Margin="15">
+            <TabItem Header="Dashboard">
+                <Grid Margin="10">
+                    <TextBlock Text="Welcome to CipherView"
                                    FontSize="36"
                                    FontWeight="Bold"
                                    Foreground="{DynamicResource MahApps.Brushes.ThemeForeground}"
                                    Margin="5,10,0,20"/>
-                        <Button Content="Add New Entry"
+                    <Button Content="Add New Entry"
                                 Width="160"
                                 Height="40"
                                 Style="{DynamicResource MahApps.Styles.Button.FlatAccent}"/>
-                    </Grid>
-                </TabItem>
+                </Grid>
+            </TabItem>
 
-                <TabItem Header="Database">
-                    <Grid Margin="10">
-                        <DataGrid x:Name="PeopleGrid"
+            <TabItem Header="Database">
+                <Grid Margin="10">
+                    <DataGrid x:Name="PeopleGrid"
                                   ItemsSource="{Binding PeopleDataGridbase}"
                                   IsReadOnly="True"
                                   AutoGenerateColumns="False"
@@ -81,19 +69,19 @@
                                   Foreground="{DynamicResource MahApps.Brushes.Text}"
                                   AlternatingRowBackground="{DynamicResource MahApps.Brushes.Control.Alternate}"
                                   GridLinesVisibility="Horizontal">
-                            <DataGrid.Columns>
-                                <DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="Auto"/>
-                                <DataGridTextColumn Header="Name" Binding="{Binding name}" Width="*"/>
-                                <DataGridTextColumn Header="Email" Binding="{Binding email}" Width="*"/>
-                                <DataGridTextColumn Header="Phone" Binding="{Binding phone}" Width="*"/>
-                                <DataGridTextColumn Header="Convicted" Binding="{Binding ConvictedDisplay}" Width="3*"/>
-                            </DataGrid.Columns>
-                        </DataGrid>
-                    </Grid>
-                </TabItem>
-            </mah:MetroAnimatedSingleRowTabControl>
-        </Border>
-
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="Auto"/>
+                            <DataGridTextColumn Header="Name" Binding="{Binding name}" Width="*"/>
+                            <DataGridTextColumn Header="Email" Binding="{Binding email}" Width="*"/>
+                            <DataGridTextColumn Header="Phone" Binding="{Binding phone}" Width="*"/>
+                            <DataGridTextColumn Header="Label(s)" Binding="{Binding labels}" Width="2*"/>
+                            <DataGridTextColumn Header="Convicted" Binding="{Binding ConvictedDisplay}" Width="3*"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </TabItem>
+        </mah:MetroAnimatedSingleRowTabControl>
+        
         <StatusBar VerticalAlignment="Bottom"
                    Background="{DynamicResource MahApps.Brushes.Accent}"
                    Foreground="{DynamicResource MahApps.Brushes.AccentForeground}"
