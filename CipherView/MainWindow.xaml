@@ -91,6 +91,12 @@
         </Style>
     </mah:MetroWindow.Resources>
 
+    <mah:MetroWindow.RightWindowCommands>
+        <mah:WindowCommands>
+            <Button Content=" Settings" Style="{StaticResource ClassicButton}" Click="Button_Settings" Margin="0,0,10,0"/>
+        </mah:WindowCommands>
+    </mah:MetroWindow.RightWindowCommands>
+
     <Grid Background="{StaticResource WindowBackground}">
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
@@ -102,17 +108,17 @@
             <Rectangle Fill="#9BB4E9" Height="2" Width="180"/>
         </StackPanel>
 
-        <StackPanel VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,111,0,0">
+        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
             <Label Content="IP Address:" HorizontalAlignment="Left" FontSize="13" FontWeight="Bold" Foreground="#2C4D85" Margin="0,0,0,4"/>
             <TextBox x:Name="SQLAddress" Width="220" Height="28" Margin="0,0,0,10" Style="{StaticResource ClassicTextBox}"/>
             <Label Content="Password:" HorizontalAlignment="Left" FontSize="13" FontWeight="Bold" Foreground="#2C4D85" Margin="0,0,0,4"/>
             <PasswordBox x:Name="SQLPassword" Width="220" Height="28" Margin="0,0,0,10" Style="{StaticResource ClassicPasswordBox}"/>
-            <Button Content="Connect" Width="100" Margin="0,10,0,0" Style="{StaticResource ClassicButton}" Click="Button_Click" Height="27"/>
+            <Button Content="Connect" Width="100" Margin="0,10,0,0" Style="{StaticResource ClassicButton}" Click="Button_Click"/>
         </StackPanel>
 
         <DockPanel Grid.Row="1" Margin="10">
             <Button Content="FAQ" DockPanel.Dock="Left" Width="50" Height="25" Style="{StaticResource ClassicButton}" Click="Button_FAQ"/>
-            <TextBlock Text="© 2025 Blazar Systems" HorizontalAlignment="Right" VerticalAlignment="Center" Foreground="#5577A9" FontSize="11"/>
+            <TextBlock Text="© 2025 blazar systems" HorizontalAlignment="Right" VerticalAlignment="Center" Foreground="#5577A9" FontSize="11"/>
         </DockPanel>
     </Grid>
 </mah:MetroWindow>
