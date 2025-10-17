@@ -12,26 +12,30 @@
         Width="913"
         WindowStartupLocation="CenterScreen"
         WindowState="Maximized"
-        GlowBrush="#0078D7"
-        BorderBrush="#AAFFFFFF"
+        GlowBrush="{DynamicResource MahApps.Brushes.Accent}"
+        BorderBrush="{DynamicResource MahApps.Brushes.ThemeForeground}"
         BorderThickness="1"
         Background="{DynamicResource MahApps.Brushes.ThemeBackground}">
 
-    <!-- LEFT WINDOW COMMANDS -->
     <mah:MetroWindow.LeftWindowCommands>
         <mah:WindowCommands>
             <Button Click="Button_About" ToolTip="CipherView">
                 <iconPacks:PackIconModern Width="22"
                                           Height="22"
                                           Kind="Eye"
-                                          Foreground="#0078D7"/>
+                                          Foreground="{DynamicResource MahApps.Brushes.Accent}"/>
             </Button>
         </mah:WindowCommands>
     </mah:MetroWindow.LeftWindowCommands>
 
-    <!-- RIGHT WINDOW COMMANDS -->
     <mah:MetroWindow.RightWindowCommands>
         <mah:WindowCommands>
+            <ToggleButton x:Name="DarkModeToggle"
+                          Content="🌙 Dark Mode"
+                          Style="{DynamicResource MahApps.Styles.Button.Flat}"
+                          Padding="8,2"
+                          Checked="DarkModeToggle_Checked"
+                          Unchecked="DarkModeToggle_Unchecked"/>
             <Button Content="Settings"
                     Click="Button_Settings"
                     Style="{DynamicResource MahApps.Styles.Button.Flat}"
@@ -46,9 +50,9 @@
     <Grid>
         <Border Margin="20"
                 CornerRadius="10"
-                BorderBrush="#88FFFFFF"
+                BorderBrush="{DynamicResource MahApps.Brushes.Control.Border}"
                 BorderThickness="1"
-                Background="#AAFFFFFF">
+                Background="{DynamicResource MahApps.Brushes.Control.Background}">
 
             <mah:MetroAnimatedSingleRowTabControl>
                 <TabItem Header="Dashboard">
@@ -56,7 +60,7 @@
                         <TextBlock Text="Welcome to CipherView"
                                    FontSize="36"
                                    FontWeight="Bold"
-                                   Foreground="#1A1A1A"
+                                   Foreground="{DynamicResource MahApps.Brushes.ThemeForeground}"
                                    Margin="5,10,0,20"/>
                         <Button Content="Add New Entry"
                                 Width="160"
@@ -73,8 +77,10 @@
                                   AutoGenerateColumns="False"
                                   SelectionMode="Single"
                                   MouseDoubleClick="PeopleGrid_MouseDoubleClick"
-                                  Background="#FDFDFD"
-                                  AlternatingRowBackground="#F5F8FA">
+                                  Background="{DynamicResource MahApps.Brushes.Control.Background}"
+                                  Foreground="{DynamicResource MahApps.Brushes.Text}"
+                                  AlternatingRowBackground="{DynamicResource MahApps.Brushes.Control.Alternate}"
+                                  GridLinesVisibility="Horizontal">
                             <DataGrid.Columns>
                                 <DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="Auto"/>
                                 <DataGridTextColumn Header="Name" Binding="{Binding name}" Width="*"/>
@@ -89,8 +95,8 @@
         </Border>
 
         <StatusBar VerticalAlignment="Bottom"
-                   Background="#0078D7"
-                   Foreground="White"
+                   Background="{DynamicResource MahApps.Brushes.Accent}"
+                   Foreground="{DynamicResource MahApps.Brushes.AccentForeground}"
                    FontWeight="SemiBold"
                    Padding="5,2">
             <StatusBarItem Content="Host:"/>
