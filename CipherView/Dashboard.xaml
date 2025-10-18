@@ -22,8 +22,7 @@
             <Button Click="Button_About" ToolTip="CipherView">
                 <iconPacks:PackIconModern Width="22"
                                           Height="22"
-                                          Kind="Eye"
-                                          Foreground="{DynamicResource MahApps.Brushes.Accent}"/>
+                                          Kind="Eye"/>
             </Button>
         </mah:WindowCommands>
     </mah:MetroWindow.LeftWindowCommands>
@@ -31,13 +30,11 @@
     <mah:MetroWindow.RightWindowCommands>
         <mah:WindowCommands>
             <Button Content="Settings"
-                    Click="Button_Settings"
-                    Style="{DynamicResource MahApps.Styles.Button.Flat}"
-                    Padding="8,2"/>
+                    Click="Button_Settings"/>
+            <Button Content="About"
+                    Click="Button_About2"/>
             <Button Content="Log Out"
-                    Click="Button_SignOut"
-                    Style="{DynamicResource MahApps.Styles.Button.FlatAccent}"
-                    Padding="8,2"/>
+                    Click="Button_SignOut"/>
         </mah:WindowCommands>
     </mah:MetroWindow.RightWindowCommands>
 
@@ -53,7 +50,7 @@
                     <Button Content="Add New Entry"
                                 Width="160"
                                 Height="40"
-                                Style="{DynamicResource MahApps.Styles.Button.FlatAccent}"/>
+                                Style="{DynamicResource MahApps.Styles.Button.Dialogs}"/>
                 </Grid>
             </TabItem>
 
@@ -84,7 +81,6 @@
         
         <StatusBar VerticalAlignment="Bottom"
                    Background="{DynamicResource MahApps.Brushes.Accent}"
-                   Foreground="{DynamicResource MahApps.Brushes.AccentForeground}"
                    FontWeight="SemiBold"
                    Padding="5,2">
             <StatusBarItem Content="Host:"/>

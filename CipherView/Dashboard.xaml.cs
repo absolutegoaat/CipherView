@@ -1,6 +1,9 @@
-﻿using MySql.Data.MySqlClient;
+﻿using ControlzEx;
+using ControlzEx.Theming;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,8 +16,6 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using static CipherView.FetchData;
-using System.Diagnostics;
-using ControlzEx;
 
 namespace CipherView
 {
@@ -92,6 +93,12 @@ namespace CipherView
             {
                 MessageBox.Show($"Failed to open URL: {ex.Message}");
             }
+        }
+
+        private void Button_About2(object sender, RoutedEventArgs e)
+        {
+            // we can change this later
+            MessageBox.Show("CipherView v1.0\nDeveloped by absolutegoaat\n\nA simple database viewer for CipherStorm.\n\nContributors:\nbrainrot02", "About CipherView", MessageBoxButton.OK, MessageBoxImage.Information);
         }
     }
 }

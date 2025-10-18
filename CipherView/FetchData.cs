@@ -44,20 +44,22 @@ namespace CipherView
                 string query = "SELECT * FROM people";
                 MySqlCommand cmd = new(query, conn);
                 MySqlDataReader reader = cmd.ExecuteReader();
+
+                // FUCKING HELL
                 while (reader.Read())
                 {
-                    FetchedData data = new()
+                    FetchedData? data = new()
                     {
-                        Id = reader.GetInt32("id"),
-                        name = reader.GetString("name"),
-                        address = reader.GetString("address"),
-                        phone = reader.GetString("phone"),
-                        email = reader.GetString("email"),
-                        ipaddress = reader.GetString("ipaddress"),
-                        labels = reader.GetString("label"), 
-                        description = reader.GetString("description"),
-                        convicted = reader.GetInt32("convicted"),
-                        socials = reader.GetString("socials")
+                        Id = reader.IsDBNull(reader.GetOrdinal("id")) ? 0 : reader.GetInt32("id"),
+                        name = reader.IsDBNull(reader.GetOrdinal("name")) ? null : reader.GetString("name"),
+                        address = reader.IsDBNull(reader.GetOrdinal("address")) ? null : reader.GetString("address"),
+                        phone = reader.IsDBNull(reader.GetOrdinal("phone")) ? null : reader.GetString("phone"),
+                        email = reader.IsDBNull(reader.GetOrdinal("email")) ? null : reader.GetString("email"),
+                        ipaddress = reader.IsDBNull(reader.GetOrdinal("ipaddress")) ? null : reader.GetString("ipaddress"),
+                        labels = reader.IsDBNull(reader.GetOrdinal("label")) ? null : reader.GetString("label"),
+                        description = reader.IsDBNull(reader.GetOrdinal("description")) ? null : reader.GetString("description"),
+                        convicted = reader.IsDBNull(reader.GetOrdinal("convicted")) ? 0 : reader.GetInt32("convicted"),
+                        socials = reader.IsDBNull(reader.GetOrdinal("socials")) ? null : reader.GetString("socials")
                     };
                     dataList.Add(data);
                 }

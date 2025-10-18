@@ -111,7 +111,7 @@
 
         <DockPanel Grid.Row="1" Margin="10">
             <Button Content="FAQ" DockPanel.Dock="Left" Width="50" Height="25" Style="{StaticResource ClassicButton}" Click="Button_FAQ"/>
-            <TextBlock Text="© 2025 Blazar Systems" HorizontalAlignment="Right" VerticalAlignment="Center" Foreground="#5577A9" FontSize="11"/>
+            <TextBlock Margin="5" Text="© 2025 Blazar Systems" HorizontalAlignment="Right" VerticalAlignment="Center" Foreground="#5577A9" FontSize="11"/>
         </DockPanel>
     </Grid>
 </mah:MetroWindow>
