@@ -26,6 +26,7 @@ namespace CipherView
     {
         public string? ConnectedIpAddress { get; set; }
         public string? WindowStatus { get; set; }
+        public string LoggedInUser { get; set; } = $"Hello, {Environment.UserName}";
 
         public Dashboard()
         {

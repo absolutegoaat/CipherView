@@ -42,15 +42,41 @@
         <mah:MetroAnimatedSingleRowTabControl Margin="15">
             <TabItem Header="Dashboard">
                 <Grid Margin="10">
-                    <TextBlock Text="Welcome to CipherView"
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <StackPanel Grid.Column="0"
+                                Orientation="Vertical">
+                        <TextBlock Text="{Binding LoggedInUser}"
                                    FontSize="36"
                                    FontWeight="Bold"
                                    Foreground="{DynamicResource MahApps.Brushes.ThemeForeground}"
-                                   Margin="5,10,0,20"/>
-                    <Button Content="Add New Entry"
+                                   Margin="5"/>
+                        <TextBlock Text="Welcome to Cipherview"
+                                   FontSize="22"
+                                   FontWeight="Light"
+                                   Margin="5"
+                                   Foreground="{DynamicResource MahApps.Brushes.ThemeForeground}"/>
+                    </StackPanel>
+
+                    <Separator Grid.Column="1" Margin="10,0,10,0" Background="#AAE0E0E0"/>
+
+                    <StackPanel Grid.Column="2">
+                        <TextBlock Text="Quick Actions"
+                                   FontSize="36"
+                                   FontWeight="Bold"
+                                   Margin="10"
+                                   Foreground="{DynamicResource MahApps.Brushes.ThemeForeground}"/>
+                        <Button Content="Add New Entry"
                                 Width="160"
                                 Height="40"
+                                Margin="10,10,0,0"
+                                HorizontalAlignment="Left"
                                 Style="{DynamicResource MahApps.Styles.Button.Dialogs}"/>
+                    </StackPanel>
                 </Grid>
             </TabItem>
 
@@ -78,7 +104,7 @@
                 </Grid>
             </TabItem>
         </mah:MetroAnimatedSingleRowTabControl>
-        
+
         <StatusBar VerticalAlignment="Bottom"
                    Background="{DynamicResource MahApps.Brushes.Accent}"
                    FontWeight="SemiBold"
