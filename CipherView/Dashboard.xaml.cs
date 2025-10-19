@@ -15,7 +15,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using static CipherView.FetchData;
+using static CipherView.MySQLCommands;
 
 namespace CipherView
 {
@@ -37,7 +37,7 @@ namespace CipherView
 
             try
             {
-                var people = FetchData.Fetcher();
+                var people = MySQLCommands.Fetcher();
 
                 if (people != null)
                 {

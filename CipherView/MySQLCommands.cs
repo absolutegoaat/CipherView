@@ -9,7 +9,7 @@ using MySql.Data.MySqlClient;
 
 namespace CipherView
 {
-    public class FetchData
+    public class MySQLCommands
     {
         public class FetchedData
         {
@@ -24,10 +24,12 @@ namespace CipherView
             public int convicted { get; set; }
             public string? socials { get; set; }
             public string ConvictedDisplay => convicted == 1 ? "Yes" : "No";
+            // fix for datagrid checkbox
+            public bool ConvictedCheckmark => convicted == 1;
         }
         public static List<FetchedData>? Fetcher()
         {
-            List<FetchedData> dataList = new();
+            List<FetchedData> dataList = [];
             string? connectAddress = MainWindow.ConnectAddress;
             string? password = MainWindow.Sqlpassword;
 
@@ -38,8 +40,10 @@ namespace CipherView
 
             try
             {
-                conn = new MySqlConnection();
-                conn.ConnectionString = ConnectionString;
+                conn = new MySqlConnection
+                {
+                    ConnectionString = ConnectionString
+                };
                 conn.Open();
                 string query = "SELECT * FROM people";
                 MySqlCommand cmd = new(query, conn);
@@ -75,9 +79,44 @@ namespace CipherView
             }
         }
 
-        public static void EditData()
+        public static void EditPerson(string RegularID, string EditedName, string EditedEmail, string EditedPhone, string EditedAddress, string EditedLabel)
         {
-            // blah blah blah
+            List<FetchedData> dataList = [];
+            string? connectAddress = MainWindow.ConnectAddress;
+            string? password = MainWindow.Sqlpassword;
+
+            MySqlConnection conn = new();
+
+            string ConnectionString;
+            ConnectionString = $"server={connectAddress};uid=root;" + $"pwd={password};database=cipherstorm";
+
+            try
+            {
+                conn = new MySqlConnection
+                {
+                    ConnectionString = ConnectionString
+                };
+
+                conn.Open();
+
+                // @parameter is like %s in python, prevents sql injection
+                string query = "UPDATE people SET name=@name, description=@description, address=@address, phone=@phone, email=@email, ipaddress=@ipaddress, label=@label, convicted=@convicted, socials=@socials WHERE id=@id";
+                using var cmd = new MySqlCommand(query, conn);
+
+                cmd.Parameters.AddWithValue("@name", EditedName);
+                cmd.Parameters.AddWithValue("@email", EditedEmail);
+                cmd.Parameters.AddWithValue("@phone", EditedPhone);
+                cmd.Parameters.AddWithValue("@address", EditedAddress);
+                cmd.Parameters.AddWithValue("@label", EditedLabel);
+                cmd.Parameters.AddWithValue("@id", RegularID);
+
+                int rowsAffected = cmd.ExecuteNonQuery(); // critical for update/insert/delete
+                MessageBox.Show("Person Edited Successfully!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
     }
 }

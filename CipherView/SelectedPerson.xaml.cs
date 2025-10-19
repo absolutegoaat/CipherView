@@ -1,5 +1,6 @@
 ﻿using Google.Protobuf.Compiler;
 using MahApps.Metro.Controls;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +14,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using static CipherView.FetchData;
+using static CipherView.MySQLCommands;
 
 namespace CipherView
 {
@@ -26,6 +27,23 @@ namespace CipherView
         {
             InitializeComponent();
             DataContext = person;
+        }
+
+        private void Button_Save(object sender, RoutedEventArgs e)
+        {
+            string RegularID = PersonID.Text; // grabs id so mysql knows where to edit
+            string EditedName = PersonName.Text;
+            string EditedEmail = PersonEmail.Text;
+            string EditedPhone = PersonPhone.Text;
+            string EditedAddress = PersonAddress.Text;
+            string EditedLabel = PersonLabels.Text;
+
+            MySQLCommands.EditPerson(RegularID, EditedName, EditedEmail, EditedPhone, EditedAddress, EditedLabel);
+        }
+
+        private void PersonID_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            MessageBox.Show("ID is read-only and cannot be edited.", "Information", MessageBoxButton.OK, MessageBoxImage.Error);
         }
     }
 }

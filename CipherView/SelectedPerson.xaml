@@ -9,7 +9,7 @@
         mc:Ignorable="d"
         Title="CipherView - Person"
         WindowStartupLocation="CenterScreen"
-        Height="651"
+        Height="677"
         Width="1129"
         GlowBrush="#0078D7"
         BorderThickness="1"
@@ -89,6 +89,12 @@
                                      FontSize="16"
                                      Padding="6"
                                      Margin="0,0,0,10"/>
+                            
+                            <CheckBox IsChecked="{Binding ConvictedCheckmark}" 
+                                      IsEnabled="True"
+                                      FontSize="16" 
+                                      Content="Convicted?"
+                                      Margin="0,10,0,0"/>
                         </StackPanel>
 
                         <Separator Grid.Column="1" 
@@ -116,18 +122,6 @@
                                      Height="200" 
                                      TextWrapping="Wrap" 
                                      VerticalScrollBarVisibility="Auto"/>
-
-                            <StatusBar Background="Gray" 
-                                       FontWeight="SemiBold" 
-                                       Padding="5"
-                                       Height="50"
-                                       Margin="0,10,0,0">
-                                <Button Content="Refresh"
-                                        Height="30"
-                                        HorizontalAlignment="Center"
-                                        Padding="5"
-                                        Style="{DynamicResource MahApps.Styles.Button.MetroWindow.Base}"/>
-                            </StatusBar>
                         </StackPanel>
                     </Grid>
                 </TabItem>
@@ -143,23 +137,26 @@
                         <StackPanel Grid.Column="0" 
                                     Orientation="Vertical" 
                                     Margin="0,0,20,0">
+                            <Label Content="ID:" FontWeight="Bold" FontSize="14"/>
+                            <TextBox x:Name="PersonID" Text="{Binding Id}" MouseDoubleClick="PersonID_MouseDoubleClick" IsReadOnly="True" FontSize="16" Padding="6" Margin="0,0,0,10"/>
+
                             <Label Content="Name:" FontWeight="Bold" FontSize="14"/>
-                            <TextBox Text="{Binding name}" FontSize="16" Padding="6" Margin="0,0,0,10"/>
+                            <TextBox x:Name="PersonName" Text="{Binding name}" FontSize="16" Padding="6" Margin="0,0,0,10"/>
 
                             <Label Content="Email:" FontWeight="Bold" FontSize="14"/>
-                            <TextBox Text="{Binding email}" FontSize="16" Padding="6" Margin="0,0,0,10"/>
+                            <TextBox x:Name="PersonEmail" Text="{Binding email}" FontSize="16" Padding="6" Margin="0,0,0,10"/>
 
                             <Label Content="Phone:" FontWeight="Bold" FontSize="14"/>
-                            <TextBox Text="{Binding phone}" FontSize="16" Padding="6" Margin="0,0,0,10"/>
+                            <TextBox x:Name="PersonPhone" Text="{Binding phone}" FontSize="16" Padding="6" Margin="0,0,0,10"/>
 
                             <Label Content="Address:" FontWeight="Bold" FontSize="14"/>
-                            <TextBox Text="{Binding address}" FontSize="16" Padding="6" Margin="0,0,0,10"/>
+                            <TextBox x:Name="PersonAddress" Text="{Binding address}" FontSize="16" Padding="6" Margin="0,0,0,10"/>
 
                             <Label Content="IP Address:" FontWeight="Bold" FontSize="14"/>
-                            <TextBox Text="{Binding ipaddress}" FontSize="16" Padding="6" Margin="0,0,0,10"/>
+                            <TextBox x:Name="PersonIPAddress" Text="{Binding ipaddress}" FontSize="16" Padding="6" Margin="0,0,0,10"/>
 
                             <Label Content="Label(s):" FontWeight="Bold" FontSize="14"/>
-                            <TextBox Text="{Binding labels}" FontSize="16" Padding="6" Margin="0,0,0,10"/>
+                            <TextBox x:Name="PersonLabels" Text="{Binding labels}" FontSize="16" Padding="6" Margin="0,0,0,10"/>
                         </StackPanel>
 
                         <Separator Grid.Column="1" 
@@ -170,7 +167,8 @@
 
                         <StackPanel Grid.Column="2" Orientation="Vertical">
                             <Label Content="Socials:" FontWeight="Bold" FontSize="14"/>
-                            <TextBox Text="{Binding socials}" 
+                            <TextBox Text="{Binding socials}"
+                                     x:Name="PersonSocials"
                                      FontSize="15" 
                                      Padding="6" 
                                      Height="200"
@@ -180,6 +178,7 @@
 
                             <Label Content="Description:" FontWeight="Bold" FontSize="14"/>
                             <TextBox Text="{Binding description}" 
+                                     x:Name="PersonDesc"
                                      FontSize="15"
                                      Padding="6"
                                      Height="200"
@@ -195,6 +194,7 @@
                                         Height="30"
                                         HorizontalAlignment="Center"
                                         Padding="5"
+                                        Click="Button_Save"
                                         Style="{DynamicResource MahApps.Styles.Button.MetroWindow.Base}"/>
                             </StatusBar>
                         </StackPanel>

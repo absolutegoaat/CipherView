@@ -54,6 +54,7 @@ namespace CipherView
             }
             catch (MySql.Data.MySqlClient.MySqlException ex)
             {
+                buffer.Close();
                 MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
