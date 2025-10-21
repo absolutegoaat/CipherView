@@ -38,10 +38,12 @@ namespace CipherView
             try
             {
                 var people = MySQLCommands.Fetcher();
+                var limitedPeople = people?.Take(5).ToList();
 
                 if (people != null)
                 {
                     PeopleGrid.ItemsSource = people;
+                    PeopleGrid2.ItemsSource = limitedPeople;
                     WindowStatus = "Data fetched successfully.";
                 }
             }
@@ -95,6 +97,15 @@ namespace CipherView
         {
             // we can change this later
             MessageBox.Show("CipherView v1.0\nDeveloped by absolutegoaat\n\nA simple database viewer for CipherStorm.\n\nContributors:\nbrainrot02", "About CipherView", MessageBoxButton.OK, MessageBoxImage.Information);
+        }
+
+        private void PeopleGrid2_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            if (PeopleGrid2.SelectedItem is FetchedData selected)
+            {
+                var detailsWindow = new SelectedPerson(selected);
+                detailsWindow.ShowDialog();
+            }
         }
     }
 }

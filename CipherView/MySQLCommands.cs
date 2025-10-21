@@ -1,10 +1,12 @@
-﻿using System;
+﻿using Google.Protobuf.Compiler;
+using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-using MySql.Data.MySqlClient;
 #pragma warning disable IDE1006 // filling up my error list so annoying
 
 namespace CipherView
@@ -27,6 +29,14 @@ namespace CipherView
             // fix for datagrid checkbox
             public bool ConvictedCheckmark => convicted == 1;
         }
+
+        public ObservableCollection<FetchedData>? FetchedDataList { get; set; }
+
+        public IEnumerable<FetchedData> PeopleDataGridbaseLimited
+        {
+            get { return FetchedDataList?.Take(5) ?? Enumerable.Empty<FetchedData>(); }
+        }
+
         public static List<FetchedData>? Fetcher()
         {
             List<FetchedData> dataList = [];
@@ -81,28 +91,19 @@ namespace CipherView
 
         public static void EditPerson(string RegularID, string EditedName, string EditedEmail, string EditedPhone, string EditedAddress, string EditedLabel)
         {
-            List<FetchedData> dataList = [];
             string? connectAddress = MainWindow.ConnectAddress;
             string? password = MainWindow.Sqlpassword;
-
-            MySqlConnection conn = new();
-
-            string ConnectionString;
-            ConnectionString = $"server={connectAddress};uid=root;" + $"pwd={password};database=cipherstorm";
+            string ConnectionString = $"server={connectAddress};uid=root;pwd={password};database=cipherstorm";
 
             try
             {
-                conn = new MySqlConnection
-                {
-                    ConnectionString = ConnectionString
-                };
-
+                using var conn = new MySqlConnection(ConnectionString);
                 conn.Open();
 
-                // @parameter is like %s in python, prevents sql injection
-                string query = "UPDATE people SET name=@name, description=@description, address=@address, phone=@phone, email=@email, ipaddress=@ipaddress, label=@label, convicted=@convicted, socials=@socials WHERE id=@id";
-                using var cmd = new MySqlCommand(query, conn);
+                // Only update the fields you have values for
+                string query = "UPDATE people SET name=@name, email=@email, phone=@phone, address=@address, label=@label WHERE id=@id";
 
+                using var cmd = new MySqlCommand(query, conn);
                 cmd.Parameters.AddWithValue("@name", EditedName);
                 cmd.Parameters.AddWithValue("@email", EditedEmail);
                 cmd.Parameters.AddWithValue("@phone", EditedPhone);
@@ -110,7 +111,7 @@ namespace CipherView
                 cmd.Parameters.AddWithValue("@label", EditedLabel);
                 cmd.Parameters.AddWithValue("@id", RegularID);
 
-                int rowsAffected = cmd.ExecuteNonQuery(); // critical for update/insert/delete
+                int rowsAffected = cmd.ExecuteNonQuery();
                 MessageBox.Show("Person Edited Successfully!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
             }
             catch (MySqlException ex)

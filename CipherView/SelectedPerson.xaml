@@ -15,11 +15,12 @@
         BorderThickness="1"
         BorderBrush="#AAFFFFFF"
         WindowTransitionsEnabled="True"
+        TitleAlignment="Center"
         TitleForeground="#E6FFFFFF"
         Background="{DynamicResource MahApps.Brushes.AccentBase}">
 
     <Grid>
-        <Border Margin="1" 
+        <Border Margin="2" 
                 BorderBrush="#88FFFFFF" 
                 BorderThickness="1" 
                 Background="{DynamicResource MahApps.Brushes.ThemeBackground}" 
@@ -89,12 +90,6 @@
                                      FontSize="16"
                                      Padding="6"
                                      Margin="0,0,0,10"/>
-                            
-                            <CheckBox IsChecked="{Binding ConvictedCheckmark}" 
-                                      IsEnabled="True"
-                                      FontSize="16" 
-                                      Content="Convicted?"
-                                      Margin="0,10,0,0"/>
                         </StackPanel>
 
                         <Separator Grid.Column="1" 
