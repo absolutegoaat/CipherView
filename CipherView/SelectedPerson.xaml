@@ -2,23 +2,29 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:mah="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CipherView"
         mc:Ignorable="d"
         Title="CipherView - Person"
         WindowStartupLocation="CenterScreen"
-        Height="595"
+        Height="677"
         Width="1129"
         GlowBrush="#0078D7"
         BorderThickness="1"
         BorderBrush="#AAFFFFFF"
         WindowTransitionsEnabled="True"
+        TitleAlignment="Center"
         TitleForeground="#E6FFFFFF"
         Background="{DynamicResource MahApps.Brushes.AccentBase}">
 
     <Grid>
-        <Border Margin="5" BorderBrush="#88FFFFFF" BorderThickness="1" Background="{DynamicResource MahApps.Brushes.ThemeBackground}" Effect="{DynamicResource MahApps.ShadowEffect}">
+        <Border Margin="2" 
+                BorderBrush="#88FFFFFF" 
+                BorderThickness="1" 
+                Background="{DynamicResource MahApps.Brushes.ThemeBackground}" 
+                Effect="{DynamicResource MahApps.ShadowEffect}">
             <mah:MetroAnimatedSingleRowTabControl
                 TabStripPlacement="Top"
                 Foreground="#222"
@@ -32,46 +38,161 @@
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
 
-                        <StackPanel Grid.Column="0" Orientation="Vertical" Margin="0,0,20,0">
+                        <StackPanel Grid.Column="0" 
+                                    Orientation="Vertical" 
+                                    Margin="0,0,20,0" 
+                                    Grid.RowSpan="2">
                             <Label Content="ID:" FontWeight="Bold" FontSize="14"/>
-                            <TextBox Text="{Binding Id}" IsReadOnly="True" FontSize="16" Padding="6" Margin="0,0,0,10"/>
+                            <TextBox Text="{Binding Id}" 
+                                     IsReadOnly="True" 
+                                     FontSize="16" 
+                                     Padding="6" 
+                                     Margin="0,0,0,10"/>
 
                             <Label Content="Name:" FontWeight="Bold" FontSize="14"/>
-                            <TextBox Text="{Binding name}" IsReadOnly="True" FontSize="16" Padding="6" Margin="0,0,0,10"/>
+                            <TextBox Text="{Binding name}" 
+                                     IsReadOnly="True" 
+                                     FontSize="16" 
+                                     Padding="6" 
+                                     Margin="0,0,0,10"/>
 
                             <Label Content="Email:" FontWeight="Bold" FontSize="14"/>
-                            <TextBox Text="{Binding email}" IsReadOnly="True" FontSize="16" Padding="6" Margin="0,0,0,10"/>
+                            <TextBox Text="{Binding email}" 
+                                     IsReadOnly="True" 
+                                     FontSize="16" 
+                                     Padding="6" 
+                                     Margin="0,0,0,10"/>
 
                             <Label Content="Phone:" FontWeight="Bold" FontSize="14"/>
-                            <TextBox Text="{Binding phone}" IsReadOnly="True" FontSize="16" Padding="6" Margin="0,0,0,10"/>
+                            <TextBox Text="{Binding phone}" 
+                                     IsReadOnly="True" 
+                                     FontSize="16" 
+                                     Padding="6" 
+                                     Margin="0,0,0,10"/>
 
                             <Label Content="Address:" FontWeight="Bold" FontSize="14"/>
-                            <TextBox Text="{Binding address}" IsReadOnly="True" FontSize="16" Padding="6" Margin="0,0,0,10"/>
+                            <TextBox Text="{Binding address}" 
+                                     IsReadOnly="True" 
+                                     FontSize="16" 
+                                     Padding="6" 
+                                     Margin="0,0,0,10"/>
 
                             <Label Content="IP Address:" FontWeight="Bold" FontSize="14"/>
-                            <TextBox Text="{Binding ipaddress}" IsReadOnly="True" FontSize="16" Padding="6" Margin="0,0,0,10"/>
+                            <TextBox Text="{Binding ipaddress}" 
+                                     IsReadOnly="True" 
+                                     FontSize="16" 
+                                     Padding="6" 
+                                     Margin="0,0,0,10"/>
+
+                            <Label Content="Label(s):" FontWeight="Bold" FontSize="14"/>
+                            <TextBox Text="{Binding labels}" 
+                                     IsReadOnly="True" 
+                                     FontSize="16"
+                                     Padding="6"
+                                     Margin="0,0,0,10"/>
                         </StackPanel>
 
-                        <Separator Grid.Column="1" Width="2" Margin="10,0" VerticalAlignment="Stretch" Background="#AAE0E0E0"/>
+                        <Separator Grid.Column="1" 
+                                   Margin="10,0,10,0" 
+                                   Background="#AAE0E0E0" 
+                                   Grid.RowSpan="2"/>
 
-                        <StackPanel Grid.Column="2" Orientation="Vertical">
+                        <StackPanel Grid.Column="2" 
+                                    Orientation="Vertical" 
+                                    Grid.RowSpan="2">
                             <Label Content="Socials:" FontWeight="Bold" FontSize="14"/>
-                            <TextBox Text="{Binding socials}" IsReadOnly="True" FontSize="15" Padding="6" Height="140" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" Margin="0,0,0,10"/>
+                            <TextBox Text="{Binding socials}" 
+                                     IsReadOnly="True" FontSize="15" 
+                                     Padding="6" 
+                                     Height="200" 
+                                     TextWrapping="Wrap" 
+                                     VerticalScrollBarVisibility="Auto" 
+                                     Margin="0,0,0,10"/>
 
                             <Label Content="Description:" FontWeight="Bold" FontSize="14"/>
-                            <TextBox Text="{Binding description}" IsReadOnly="True" FontSize="15" Padding="6" Height="200" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto"/>
+                            <TextBox Text="{Binding description}" 
+                                     IsReadOnly="True" 
+                                     FontSize="15" 
+                                     Padding="6" 
+                                     Height="200" 
+                                     TextWrapping="Wrap" 
+                                     VerticalScrollBarVisibility="Auto"/>
                         </StackPanel>
                     </Grid>
                 </TabItem>
 
                 <TabItem Header="Edit">
-                    <Grid Margin="15" Background="#FFFDFDFE">
-                        <TextBlock Text="Editing features coming soon..." 
-                                   Foreground="#555"
-                                   FontStyle="Italic"
-                                   VerticalAlignment="Center"
-                                   HorizontalAlignment="Center"
-                                   FontSize="16"/>
+                    <Grid Margin="15">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="500"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <StackPanel Grid.Column="0" 
+                                    Orientation="Vertical" 
+                                    Margin="0,0,20,0">
+                            <Label Content="ID:" FontWeight="Bold" FontSize="14"/>
+                            <TextBox x:Name="PersonID" Text="{Binding Id}" MouseDoubleClick="PersonID_MouseDoubleClick" IsReadOnly="True" FontSize="16" Padding="6" Margin="0,0,0,10"/>
+
+                            <Label Content="Name:" FontWeight="Bold" FontSize="14"/>
+                            <TextBox x:Name="PersonName" Text="{Binding name}" FontSize="16" Padding="6" Margin="0,0,0,10"/>
+
+                            <Label Content="Email:" FontWeight="Bold" FontSize="14"/>
+                            <TextBox x:Name="PersonEmail" Text="{Binding email}" FontSize="16" Padding="6" Margin="0,0,0,10"/>
+
+                            <Label Content="Phone:" FontWeight="Bold" FontSize="14"/>
+                            <TextBox x:Name="PersonPhone" Text="{Binding phone}" FontSize="16" Padding="6" Margin="0,0,0,10"/>
+
+                            <Label Content="Address:" FontWeight="Bold" FontSize="14"/>
+                            <TextBox x:Name="PersonAddress" Text="{Binding address}" FontSize="16" Padding="6" Margin="0,0,0,10"/>
+
+                            <Label Content="IP Address:" FontWeight="Bold" FontSize="14"/>
+                            <TextBox x:Name="PersonIPAddress" Text="{Binding ipaddress}" FontSize="16" Padding="6" Margin="0,0,0,10"/>
+
+                            <Label Content="Label(s):" FontWeight="Bold" FontSize="14"/>
+                            <TextBox x:Name="PersonLabels" Text="{Binding labels}" FontSize="16" Padding="6" Margin="0,0,0,10"/>
+                        </StackPanel>
+
+                        <Separator Grid.Column="1" 
+                                   Width="2" 
+                                   Margin="10,0" 
+                                   VerticalAlignment="Stretch"
+                                   Grid.RowSpan="2"/>
+
+                        <StackPanel Grid.Column="2" Orientation="Vertical">
+                            <Label Content="Socials:" FontWeight="Bold" FontSize="14"/>
+                            <TextBox Text="{Binding socials}"
+                                     x:Name="PersonSocials"
+                                     FontSize="15" 
+                                     Padding="6" 
+                                     Height="200"
+                                     TextWrapping="Wrap"
+                                     VerticalScrollBarVisibility="Auto"
+                                     Margin="0,0,0,10"/>
+
+                            <Label Content="Description:" FontWeight="Bold" FontSize="14"/>
+                            <TextBox Text="{Binding description}" 
+                                     x:Name="PersonDesc"
+                                     FontSize="15"
+                                     Padding="6"
+                                     Height="200"
+                                     TextWrapping="Wrap"
+                                     VerticalScrollBarVisibility="Auto"/>
+
+                            <StatusBar Background="Gray" 
+                                       FontWeight="SemiBold" 
+                                       Padding="5"
+                                       Height="50"
+                                       Margin="0,10,0,0">
+                                <Button Content="Save"
+                                        Height="30"
+                                        HorizontalAlignment="Center"
+                                        Padding="5"
+                                        Click="Button_Save"
+                                        Style="{DynamicResource MahApps.Styles.Button.MetroWindow.Base}"/>
+                            </StatusBar>
+                        </StackPanel>
                     </Grid>
                 </TabItem>
             </mah:MetroAnimatedSingleRowTabControl>

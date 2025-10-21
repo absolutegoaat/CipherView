@@ -15,7 +15,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using static CipherView.FetchData;
+using static CipherView.MySQLCommands;
 
 namespace CipherView
 {
@@ -26,6 +26,7 @@ namespace CipherView
     {
         public string? ConnectedIpAddress { get; set; }
         public string? WindowStatus { get; set; }
+        public string LoggedInUser { get; set; } = $"Hello, {Environment.UserName}";
 
         public Dashboard()
         {
@@ -36,11 +37,13 @@ namespace CipherView
 
             try
             {
-                var people = FetchData.Fetcher();
+                var people = MySQLCommands.Fetcher();
+                var limitedPeople = people?.Take(5).ToList();
 
                 if (people != null)
                 {
                     PeopleGrid.ItemsSource = people;
+                    PeopleGrid2.ItemsSource = limitedPeople;
                     WindowStatus = "Data fetched successfully.";
                 }
             }
@@ -94,6 +97,15 @@ namespace CipherView
         {
             // we can change this later
             MessageBox.Show("CipherView v1.0\nDeveloped by absolutegoaat\n\nA simple database viewer for CipherStorm.\n\nContributors:\nbrainrot02", "About CipherView", MessageBoxButton.OK, MessageBoxImage.Information);
+        }
+
+        private void PeopleGrid2_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            if (PeopleGrid2.SelectedItem is FetchedData selected)
+            {
+                var detailsWindow = new SelectedPerson(selected);
+                detailsWindow.ShowDialog();
+            }
         }
     }
 }

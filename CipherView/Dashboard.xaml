@@ -8,8 +8,8 @@
         xmlns:local="clr-namespace:CipherView"
         mc:Ignorable="d"
         Title="CipherView - Dashboard"
-        Height="451"
-        Width="913"
+        Height="522"
+        Width="967"
         WindowStartupLocation="CenterScreen"
         WindowState="Maximized"
         GlowBrush="{DynamicResource MahApps.Brushes.Accent}"
@@ -42,21 +42,58 @@
         <mah:MetroAnimatedSingleRowTabControl Margin="15">
             <TabItem Header="Dashboard">
                 <Grid Margin="10">
-                    <TextBlock Text="Welcome to CipherView"
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+
+                    <StackPanel Grid.Column="0"
+                                Orientation="Vertical">
+                        <TextBlock Text="{Binding LoggedInUser}"
                                    FontSize="36"
                                    FontWeight="Bold"
                                    Foreground="{DynamicResource MahApps.Brushes.ThemeForeground}"
-                                   Margin="5,10,0,20"/>
-                    <Button Content="Add New Entry"
-                                Width="160"
-                                Height="40"
-                                Style="{DynamicResource MahApps.Styles.Button.Dialogs}"/>
+                                   Margin="5"/>
+                        <TextBlock Text="Welcome to Cipherview"
+                                   FontSize="22"
+                                   FontWeight="Light"
+                                   Margin="5"
+                                   Foreground="{DynamicResource MahApps.Brushes.ThemeForeground}"/>
+
+                        <TextBlock Text="Here is a quick view of your data."
+                                   FontSize="16"
+                                   FontWeight="Normal"
+                                   Margin="5,15,0,10"
+                                   Foreground="{DynamicResource MahApps.Brushes.ThemeForeground}"/>
+
+                        <DataGrid x:Name="PeopleGrid2"
+                                  ItemsSource="{Binding PeopleDataGridbase}"
+                                  IsReadOnly="True"
+                                  AutoGenerateColumns="False"
+                                  SelectionMode="Single"
+                                  MouseDoubleClick="PeopleGrid2_MouseDoubleClick"
+                                  Background="{DynamicResource MahApps.Brushes.Control.Background}"
+                                  Foreground="{DynamicResource MahApps.Brushes.Text}"
+                                  AlternatingRowBackground="{DynamicResource MahApps.Brushes.Control.Alternate}"
+                                  GridLinesVisibility="Horizontal">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Name" Binding="{Binding name}" Width="*"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </StackPanel>
                 </Grid>
             </TabItem>
 
             <TabItem Header="Database">
                 <Grid Margin="10">
-                    <DataGrid x:Name="PeopleGrid"
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="600"/>
+                    </Grid.ColumnDefinitions>
+
+                    <StackPanel Grid.Column="0">
+                        <DataGrid x:Name="PeopleGrid"
                                   ItemsSource="{Binding PeopleDataGridbase}"
                                   IsReadOnly="True"
                                   AutoGenerateColumns="False"
@@ -66,19 +103,32 @@
                                   Foreground="{DynamicResource MahApps.Brushes.Text}"
                                   AlternatingRowBackground="{DynamicResource MahApps.Brushes.Control.Alternate}"
                                   GridLinesVisibility="Horizontal">
-                        <DataGrid.Columns>
-                            <DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="Auto"/>
-                            <DataGridTextColumn Header="Name" Binding="{Binding name}" Width="*"/>
-                            <DataGridTextColumn Header="Email" Binding="{Binding email}" Width="*"/>
-                            <DataGridTextColumn Header="Phone" Binding="{Binding phone}" Width="*"/>
-                            <DataGridTextColumn Header="Label(s)" Binding="{Binding labels}" Width="2*"/>
-                            <DataGridTextColumn Header="Convicted" Binding="{Binding ConvictedDisplay}" Width="3*"/>
-                        </DataGrid.Columns>
-                    </DataGrid>
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="Auto"/>
+                                <DataGridTextColumn Header="Name" Binding="{Binding name}" Width="*"/>
+                                <DataGridTextColumn Header="Label(s)" Binding="{Binding labels}" Width="2*"/>
+                                <DataGridTextColumn Header="Convicted" Binding="{Binding ConvictedDisplay}" Width="3*"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </StackPanel>
+
+                    <StackPanel Grid.Column="3">
+                        <TextBlock Text="Quick Actions"
+                                   HorizontalAlignment="Center"
+                                   FontSize="20"
+                                   FontWeight="Bold"
+                                   Margin="5"
+                                   Foreground="{DynamicResource MahApps.Brushes.ThemeForeground}"/>
+
+                        <Button Content="Add New Entry"
+                                Margin="5"
+                                Width="400"
+                                Style="{DynamicResource MahApps.Styles.Button.Dialogs}"/>
+                    </StackPanel>
                 </Grid>
             </TabItem>
         </mah:MetroAnimatedSingleRowTabControl>
-        
+
         <StatusBar VerticalAlignment="Bottom"
                    Background="{DynamicResource MahApps.Brushes.Accent}"
                    FontWeight="SemiBold"
