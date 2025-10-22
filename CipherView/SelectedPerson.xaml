@@ -20,7 +20,7 @@
         Background="{DynamicResource MahApps.Brushes.AccentBase}">
 
     <Grid>
-        <Border Margin="2" 
+        <Border Margin="0" 
                 BorderBrush="#88FFFFFF" 
                 BorderThickness="1" 
                 Background="{DynamicResource MahApps.Brushes.ThemeBackground}" 
@@ -28,7 +28,8 @@
             <mah:MetroAnimatedSingleRowTabControl
                 TabStripPlacement="Top"
                 Foreground="#222"
-                FontSize="15">
+                FontSize="15"
+                Margin="10">
 
                 <TabItem Header="Details">
                     <Grid Margin="15">
