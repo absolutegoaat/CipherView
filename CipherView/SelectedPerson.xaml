@@ -145,7 +145,7 @@
                             <Label Content="Phone:" FontWeight="Bold" FontSize="14"/>
                             <TextBox x:Name="PersonPhone" Text="{Binding phone}" FontSize="16" Padding="6" Margin="0,0,0,10"/>
 
-                            <Label Content="Address:" FontWeight="Bold" FontSize="14"/>
+                            <Label Content="Address/Location:" FontWeight="Bold" FontSize="14"/>
                             <TextBox x:Name="PersonAddress" Text="{Binding address}" FontSize="16" Padding="6" Margin="0,0,0,10"/>
 
                             <Label Content="IP Address:" FontWeight="Bold" FontSize="14"/>
@@ -166,6 +166,7 @@
                             <TextBox Text="{Binding socials}"
                                      x:Name="PersonSocials"
                                      FontSize="15" 
+                                     AcceptsReturn="True"
                                      Padding="6" 
                                      Height="200"
                                      TextWrapping="Wrap"
@@ -175,6 +176,7 @@
                             <Label Content="Description:" FontWeight="Bold" FontSize="14"/>
                             <TextBox Text="{Binding description}" 
                                      x:Name="PersonDesc"
+                                     AcceptsReturn="True"
                                      FontSize="15"
                                      Padding="6"
                                      Height="200"
