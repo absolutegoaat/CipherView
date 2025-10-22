@@ -89,7 +89,7 @@ namespace CipherView
             }
         }
 
-        public static void EditPerson(string RegularID, string EditedName, string EditedEmail, string EditedPhone, string EditedAddress, string EditedLabel)
+        public static void EditPerson(string RegularID, string EditedName, string EditedEmail, string EditedPhone, string EditedAddress, string EditedLabel, string EditedSocials, string EditedDescription)
         {
             string? connectAddress = MainWindow.ConnectAddress;
             string? password = MainWindow.Sqlpassword;
@@ -101,7 +101,7 @@ namespace CipherView
                 conn.Open();
 
                 // Only update the fields you have values for
-                string query = "UPDATE people SET name=@name, email=@email, phone=@phone, address=@address, label=@label WHERE id=@id";
+                string query = "UPDATE people SET name=@name, email=@email, phone=@phone, address=@address, label=@label, socials=@socials, description=@description WHERE id=@id";
 
                 using var cmd = new MySqlCommand(query, conn);
                 cmd.Parameters.AddWithValue("@name", EditedName);
@@ -109,10 +109,41 @@ namespace CipherView
                 cmd.Parameters.AddWithValue("@phone", EditedPhone);
                 cmd.Parameters.AddWithValue("@address", EditedAddress);
                 cmd.Parameters.AddWithValue("@label", EditedLabel);
+                cmd.Parameters.AddWithValue("@socials", EditedSocials);
+                cmd.Parameters.AddWithValue("@description", EditedDescription);
                 cmd.Parameters.AddWithValue("@id", RegularID);
 
                 int rowsAffected = cmd.ExecuteNonQuery();
-                MessageBox.Show("Person Edited Successfully!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show($"{EditedName} Edited Successfully!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        public static void AddPerson(string NewName, string NewEmail, string NewPhone, string NewAddress, string NewLabel, string NewSocials, string NewDescription)
+        {
+            string? connectAddress = MainWindow.ConnectAddress;
+            string? password = MainWindow.Sqlpassword;
+            string ConnectionString = $"server={connectAddress};uid=root;pwd={password};database=cipherstorm";
+
+            try
+            {
+                using var conn = new MySqlConnection(ConnectionString);
+                conn.Open();
+                string query = "INSERT INTO people (name, email, phone, address, label, socials, description) " +
+                               "VALUES (@name, @email, @phone, @address, @label, @socials, @description)";
+                using var cmd = new MySqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@name", NewName);
+                cmd.Parameters.AddWithValue("@email", NewEmail);
+                cmd.Parameters.AddWithValue("@phone", NewPhone);
+                cmd.Parameters.AddWithValue("@address", NewAddress);
+                cmd.Parameters.AddWithValue("@label", NewLabel);
+                cmd.Parameters.AddWithValue("@socials", NewSocials);
+                cmd.Parameters.AddWithValue("@description", NewDescription);
+                int rowsAffected = cmd.ExecuteNonQuery();
+                MessageBox.Show($"{NewName} Added Successfully! Refresh DataGrid to see new person.", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
             }
             catch (MySqlException ex)
             {

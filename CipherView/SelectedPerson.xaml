@@ -7,7 +7,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CipherView"
         mc:Ignorable="d"
-        Title="CipherView - Person"
+        Title="CipherView"
         WindowStartupLocation="CenterScreen"
         Height="677"
         Width="1129"

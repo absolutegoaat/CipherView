@@ -53,6 +53,30 @@ namespace CipherView
             }
         }
 
+        public void RefreshDataGrid()
+        {
+            
+            PeopleGrid.ItemsSource = null;
+            PeopleGrid2.ItemsSource = null;
+
+            try
+            {
+                var people = MySQLCommands.Fetcher();
+                var limitedPeople = people?.Take(5).ToList();
+
+                if (people != null)
+                {
+                    PeopleGrid.ItemsSource = people;
+                    PeopleGrid2.ItemsSource = limitedPeople;
+                    WindowStatus = "Data refreshed successfully.";
+                }
+            }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show("Error while refreshing: " + ex.Message);
+            }
+        }
+
         private void Button_Settings(object sender, RoutedEventArgs e)
         {
             WindowStatus = "User Loaded Settings";
@@ -106,6 +130,17 @@ namespace CipherView
                 var detailsWindow = new SelectedPerson(selected);
                 detailsWindow.ShowDialog();
             }
+        }
+
+        private void Button_Add(object sender, RoutedEventArgs e)
+        {
+            var NewPersonWindow = new AddPerson();
+            NewPersonWindow.ShowDialog();
+        }
+
+        private void Button_Refresh(object sender, RoutedEventArgs e)
+        {
+            RefreshDataGrid();
         }
     }
 }
