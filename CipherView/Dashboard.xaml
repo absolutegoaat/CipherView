@@ -89,8 +89,36 @@
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="440"/>
+                        <ColumnDefinition Width="300"/>
                     </Grid.ColumnDefinitions>
+
+                    <Border Margin="0" 
+                            BorderBrush="{DynamicResource MahApps.Brushes.Border.NonActive}" 
+                            BorderThickness="1" 
+                            Background="{DynamicResource MahApps.Brushes.ThemeBackground}" 
+                            Effect="{DynamicResource MahApps.ShadowEffect}"
+                            Grid.Column="3">
+                        <StackPanel Grid.Column="3">
+                            <TextBlock Text="Actions"
+                                   HorizontalAlignment="Center"
+                                   FontSize="20"
+                                   FontWeight="Bold"
+                                   Margin="5"
+                                   Foreground="{DynamicResource MahApps.Brushes.ThemeForeground}"/>
+
+                            <Button Content="Refresh"
+                                    Margin="10,5,10,0"
+                                    Width="Auto"
+                                    Style="{DynamicResource MahApps.Styles.Button.Flat}"
+                                    Click="Button_Refresh"/>
+
+                            <Button Content="Add New Entry"
+                                    Margin="10,5,10,0"
+                                    Width="Auto"
+                                    Style="{DynamicResource MahApps.Styles.Button.Flat}"
+                                    Click="Button_Add"/>
+                        </StackPanel>
+                    </Border>
 
                     <StackPanel Grid.Column="0">
                         <DataGrid x:Name="PeopleGrid"
@@ -110,20 +138,6 @@
                                 <DataGridTextColumn Header="Convicted" Binding="{Binding ConvictedDisplay}" Width="3*"/>
                             </DataGrid.Columns>
                         </DataGrid>
-                    </StackPanel>
-
-                    <StackPanel Grid.Column="3">
-                        <TextBlock Text="Quick Actions"
-                                   HorizontalAlignment="Center"
-                                   FontSize="20"
-                                   FontWeight="Bold"
-                                   Margin="5"
-                                   Foreground="{DynamicResource MahApps.Brushes.ThemeForeground}"/>
-
-                        <Button Content="Add New Entry"
-                                Margin="5"
-                                Width="400"
-                                Style="{DynamicResource MahApps.Styles.Button.Dialogs}"/>
                     </StackPanel>
                 </Grid>
             </TabItem>

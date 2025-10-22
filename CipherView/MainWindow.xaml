@@ -10,6 +10,7 @@
         Title="CipherView - Login"
         Height="406" Width="738"
         ResizeMode="NoResize"
+        TitleAlignment="Center"
         Background="#f4f6fb">
 
     <mah:MetroWindow.Resources>

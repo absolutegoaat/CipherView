@@ -27,6 +27,8 @@ namespace CipherView
         {
             InitializeComponent();
             DataContext = person;
+
+            this.Title = "CipherView - " + person.name;
         }
 
         private void Button_Save(object sender, RoutedEventArgs e)
@@ -37,8 +39,10 @@ namespace CipherView
             string EditedPhone = PersonPhone.Text;
             string EditedAddress = PersonAddress.Text;
             string EditedLabel = PersonLabels.Text;
+            string EditedSocials = PersonSocials.Text;
+            string EditedDescription = PersonDesc.Text;
 
-            MySQLCommands.EditPerson(RegularID, EditedName, EditedEmail, EditedPhone, EditedAddress, EditedLabel);
+            MySQLCommands.EditPerson(RegularID, EditedName, EditedEmail, EditedPhone, EditedAddress, EditedLabel, EditedSocials, EditedDescription);
         }
 
         private void PersonID_MouseDoubleClick(object sender, MouseButtonEventArgs e)
