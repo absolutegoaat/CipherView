@@ -58,12 +58,14 @@
                                  Padding="6" 
                                  Height="200"
                                  TextWrapping="Wrap"
+                                 AcceptsReturn="True"
                                  VerticalScrollBarVisibility="Auto"
                                  Margin="0,0,0,10"/>
 
                         <Label Content="Description:" FontWeight="Bold" FontSize="14"/>
                         <TextBox x:Name="PersonDesc"
                                  FontSize="15"
+                                 AcceptsReturn="True"
                                  Padding="6"
                                  Height="200"
                                  TextWrapping="Wrap"
