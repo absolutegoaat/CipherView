@@ -35,7 +35,7 @@
                         <Label Content="Phone:" FontWeight="Bold" FontSize="14"/>
                         <TextBox x:Name="PersonPhone" FontSize="16" Padding="6" Margin="0,0,0,10"/>
 
-                        <Label Content="Address:" FontWeight="Bold" FontSize="14"/>
+                        <Label Content="Address/Location:" FontWeight="Bold" FontSize="14"/>
                         <TextBox x:Name="PersonAddress" FontSize="16" Padding="6" Margin="0,0,0,10"/>
 
                         <Label Content="IP Address:" FontWeight="Bold" FontSize="14"/>
