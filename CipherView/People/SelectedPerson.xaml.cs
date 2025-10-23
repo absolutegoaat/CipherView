@@ -16,7 +16,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using static CipherView.MySQLCommands;
 
-namespace CipherView
+namespace CipherView.People
 {
     /// <summary>
     /// Interaction logic for SelectedPerson.xaml
@@ -27,7 +27,6 @@ namespace CipherView
         {
             InitializeComponent();
             DataContext = person;
-
             this.Title = "CipherView - " + person.name;
         }
 
