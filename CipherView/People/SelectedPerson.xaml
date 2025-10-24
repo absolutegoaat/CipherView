@@ -1,4 +1,4 @@
-<mah:MetroWindow x:Class="CipherView.SelectedPerson"
+<mah:MetroWindow x:Class="CipherView.People.SelectedPerson"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:mah="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -9,8 +9,8 @@
         mc:Ignorable="d"
         Title="CipherView"
         WindowStartupLocation="CenterScreen"
-        Height="677"
-        Width="1129"
+        Height="769"
+        Width="1250"
         GlowBrush="#0078D7"
         BorderThickness="1"
         BorderBrush="#AAFFFFFF"
@@ -38,6 +38,12 @@
                             <ColumnDefinition Width="Auto"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
 
                         <StackPanel Grid.Column="0" 
                                     Orientation="Vertical" 
@@ -98,27 +104,33 @@
                                    Background="#AAE0E0E0" 
                                    Grid.RowSpan="2"/>
 
-                        <StackPanel Grid.Column="2" 
-                                    Orientation="Vertical" 
-                                    Grid.RowSpan="2">
-                            <Label Content="Socials:" FontWeight="Bold" FontSize="14"/>
-                            <TextBox Text="{Binding socials}" 
-                                     IsReadOnly="True" FontSize="15" 
-                                     Padding="6" 
-                                     Height="200" 
-                                     TextWrapping="Wrap" 
-                                     VerticalScrollBarVisibility="Auto" 
-                                     Margin="0,0,0,10"/>
 
-                            <Label Content="Description:" FontWeight="Bold" FontSize="14"/>
-                            <TextBox Text="{Binding description}" 
-                                     IsReadOnly="True" 
-                                     FontSize="15" 
-                                     Padding="6" 
-                                     Height="200" 
-                                     TextWrapping="Wrap" 
-                                     VerticalScrollBarVisibility="Auto"/>
-                        </StackPanel>
+                        <ScrollViewer Grid.Column="2" 
+                                      Grid.Row="0"
+                                      Grid.RowSpan="4"
+                                      VerticalScrollBarVisibility="Visible">
+                            <StackPanel Orientation="Vertical" VerticalAlignment="Top">
+                                <Label Content="Socials:" FontWeight="Bold" FontSize="14"/>
+                                <TextBox Text="{Binding socials}"
+                                         FontSize="15" 
+                                         IsReadOnly="True"
+                                         Grid.Row="2"
+                                         AcceptsReturn="True"
+                                         Padding="6" 
+                                         TextWrapping="Wrap"
+                                         VerticalScrollBarVisibility="Auto"
+                                         Margin="0,0,0,10"/>
+                                <Label Content="Description:" FontWeight="Bold" FontSize="14"/>
+                                <TextBox Text="{Binding description}" 
+                                         Grid.Row="4"
+                                         AcceptsReturn="True"
+                                         IsReadOnly="True"
+                                         FontSize="15"
+                                         Padding="6"
+                                         TextWrapping="Wrap"
+                                         VerticalScrollBarVisibility="Auto"/>
+                            </StackPanel>
+                        </ScrollViewer>
                     </Grid>
                 </TabItem>
 
@@ -129,6 +141,14 @@
                             <ColumnDefinition Width="Auto"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+
 
                         <StackPanel Grid.Column="0" 
                                     Orientation="Vertical" 
@@ -161,41 +181,46 @@
                                    VerticalAlignment="Stretch"
                                    Grid.RowSpan="2"/>
 
-                        <StackPanel Grid.Column="2" Orientation="Vertical">
-                            <Label Content="Socials:" FontWeight="Bold" FontSize="14"/>
-                            <TextBox Text="{Binding socials}"
-                                     x:Name="PersonSocials"
-                                     FontSize="15" 
-                                     AcceptsReturn="True"
-                                     Padding="6" 
-                                     Height="200"
-                                     TextWrapping="Wrap"
-                                     VerticalScrollBarVisibility="Auto"
-                                     Margin="0,0,0,10"/>
+                        <ScrollViewer Grid.Column="2" 
+                                      Grid.Row="0"
+                                      Grid.RowSpan="4"
+                                      VerticalScrollBarVisibility="Visible">
+                            <StackPanel Orientation="Vertical" VerticalAlignment="Top">
+                                <Label Content="Socials:" FontWeight="Bold" FontSize="14"/>
+                                <TextBox Text="{Binding socials}"
+                                         x:Name="PersonSocials"
+                                         FontSize="15" 
+                                         Grid.Row="2"
+                                         AcceptsReturn="True"
+                                         Padding="6" 
+                                         TextWrapping="Wrap"
+                                         VerticalScrollBarVisibility="Auto"
+                                         Margin="0,0,0,10"/>
+                                <Label Content="Description:" FontWeight="Bold" FontSize="14"/>
+                                <TextBox Text="{Binding description}" 
+                                         x:Name="PersonDesc"
+                                         Grid.Row="4"
+                                         AcceptsReturn="True"
+                                         FontSize="15"
+                                         Padding="6"
+                                         TextWrapping="Wrap"
+                                         VerticalScrollBarVisibility="Auto"/>
+                            </StackPanel>
+                        </ScrollViewer>
 
-                            <Label Content="Description:" FontWeight="Bold" FontSize="14"/>
-                            <TextBox Text="{Binding description}" 
-                                     x:Name="PersonDesc"
-                                     AcceptsReturn="True"
-                                     FontSize="15"
-                                     Padding="6"
-                                     Height="200"
-                                     TextWrapping="Wrap"
-                                     VerticalScrollBarVisibility="Auto"/>
-
-                            <StatusBar Background="Gray" 
+                        <StatusBar Background="Gray" 
                                        FontWeight="SemiBold" 
                                        Padding="5"
                                        Height="50"
-                                       Margin="0,10,0,0">
-                                <Button Content="Save"
+                                       Grid.Row="3"
+                                       Margin="0,10,20,0">
+                            <Button Content="Save"
                                         Height="30"
                                         HorizontalAlignment="Center"
                                         Padding="5"
                                         Click="Button_Save"
                                         Style="{DynamicResource MahApps.Styles.Button.MetroWindow.Base}"/>
-                            </StatusBar>
-                        </StackPanel>
+                        </StatusBar>
                     </Grid>
                 </TabItem>
             </mah:MetroAnimatedSingleRowTabControl>

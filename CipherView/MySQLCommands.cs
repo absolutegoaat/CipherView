@@ -13,6 +13,10 @@ namespace CipherView
 {
     public class MySQLCommands
     {
+
+        /*
+         People stored in CipherStorm Database
+         */
         public class FetchedData
         {
             public int Id { get; set; }
@@ -148,6 +152,68 @@ namespace CipherView
             catch (MySqlException ex)
             {
                 MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        /*
+         Users of CipherStorm (Web)
+         */
+
+        public class Users
+        {
+            public int Id { get; set; }
+            public string? username { get; set; }
+            public string? password_hash { get; set; }
+            public int is_admin { get; set; }
+            public required string created_at { get; set; }
+            public string? last_login { get; set; }
+        }
+
+        public static List<Users>? FetchUsers()
+        {
+            List<Users> usersList = [];
+            string? connectAddress = MainWindow.ConnectAddress;
+            string? password = MainWindow.Sqlpassword;
+            MySqlConnection conn = new();
+
+            string ConnectionString;
+            ConnectionString = $"server={connectAddress};uid=root;" + $"pwd={password};database=cipherstorm";
+
+            try
+            {
+                conn = new MySqlConnection
+                {
+                    ConnectionString = ConnectionString
+                };
+                conn.Open();
+                string query = "SELECT * FROM users";
+                MySqlCommand cmd = new(query, conn);
+                MySqlDataReader reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    Users? user = new()
+                    {
+                        Id = reader.GetInt32("id"),
+                        username = reader.GetString("username"),
+                        password_hash = reader.GetString("password_hash"),
+                        is_admin = reader.GetInt32("is_admin"),
+                        created_at = reader.GetDateTime("created_at").ToString("yyyy-MM-dd HH:mm:ss"),
+                        last_login = reader.IsDBNull(reader.GetOrdinal("last_login")) ? null : reader.GetDateTime("last_login").ToString("yyyy-MM-dd HH:mm:ss"),
+                    };
+
+                    usersList.Add(user);
+                }
+
+                reader.Close();
+                conn.Close();
+
+                return usersList;
+            }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return null;
             }
         }
     }

@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using MahApps.Metro.Controls;
 
-namespace CipherView
+namespace CipherView.People
 {
     /// <summary>
     /// Interaction logic for AddPerson.xaml
