@@ -263,9 +263,6 @@
 
                             <TextBlock Text="Label(s):" FontWeight="Bold" Margin="0,10,0,0"/>
                             <TextBlock Text="{Binding labels}"/>
-
-                            <TextBlock Text="Socials:" FontWeight="Bold" Margin="0,10,0,0"/>
-                            <TextBlock Text="{Binding socials}"/>
                         </StackPanel>
                     </ScrollViewer>
                 </Grid>
