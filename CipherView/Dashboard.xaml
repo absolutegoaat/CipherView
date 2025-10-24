@@ -92,12 +92,6 @@
                         <ColumnDefinition Width="300"/>
                     </Grid.ColumnDefinitions>
 
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="140"/>
-                    </Grid.RowDefinitions>
-
                     <Border Margin="0" 
                             BorderBrush="{DynamicResource MahApps.Brushes.Border.NonActive}" 
                             BorderThickness="1,1,1,0" 
@@ -126,33 +120,20 @@
                         </StackPanel>
                     </Border>
 
-                    <StackPanel Grid.Column="0">
+                    <StackPanel>
                         <DataGrid x:Name="PeopleGrid"
-                                  ItemsSource="{Binding PeopleDataGridbase}"
-                                  IsReadOnly="True"
-                                  AutoGenerateColumns="False"
-                                  SelectionMode="Single"
-                                  MouseDoubleClick="PeopleGrid_MouseDoubleClick"
-                                  Background="{DynamicResource MahApps.Brushes.Control.Background}"
-                                  Foreground="{DynamicResource MahApps.Brushes.Text}"
-                                  AlternatingRowBackground="{DynamicResource MahApps.Brushes.Control.Alternate}"
-                                  GridLinesVisibility="Horizontal">
-
-
-                            <!--cannot hot reload while debugging-->
-                            <DataGrid.RowStyle>
-                                <Style TargetType="DataGridRow" BasedOn="{StaticResource MahApps.Styles.DataGridRow}">
-                                    <Setter Property="ContextMenu">
-                                        <Setter.Value>
-                                            <ContextMenu>
-                                                <MenuItem Header="Delete" Tag="Delete"/>
-                                                <Separator/>
-                                                <MenuItem Header="Zenbar (Quick View)" Tag="Zenbar"/>
-                                            </ContextMenu>
-                                        </Setter.Value>
-                                    </Setter>
-                                </Style>
-                            </DataGrid.RowStyle>
+                              ItemsSource="{Binding PeopleDataGridbase}"
+                              IsReadOnly="True"
+                              Grid.Row="0"
+                              Grid.Column="0"
+                              LoadingRow="DataGrid_LoadingRow"
+                              AutoGenerateColumns="False"
+                              SelectionMode="Single"
+                              MouseDoubleClick="PeopleGrid_MouseDoubleClick"
+                              Background="{DynamicResource MahApps.Brushes.Control.Background}"
+                              Foreground="{DynamicResource MahApps.Brushes.Text}"
+                              AlternatingRowBackground="{DynamicResource MahApps.Brushes.Control.Alternate}"
+                              GridLinesVisibility="Horizontal">
 
                             <DataGrid.Columns>
                                 <DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="Auto"/>
@@ -161,62 +142,6 @@
                                 <DataGridTextColumn Header="Convicted" Binding="{Binding ConvictedDisplay}" Width="3*"/>
                             </DataGrid.Columns>
                         </DataGrid>
-                    </StackPanel>
-
-                    <StackPanel x:Name="ZENPlaceholder" Visibility="Visible" Grid.Row="2">
-                        <TextBlock Text="Right Click on someone on the table to appear here on the Zenbar! (Quick View)"
-                                   Foreground="{DynamicResource MahApps.Brushes.Badged.Background.Disabled}"
-                                   HorizontalAlignment="Center"
-                                   FontStyle="Italic"
-                                   FontSize="15"/>
-                    </StackPanel>
-
-                    <StackPanel x:Name="Zenbar" Visibility="Collapsed" Grid.Row="2">
-                        <ScrollViewer Margin="10"
-                                      Grid.RowSpan="3"
-                                      VerticalScrollBarVisibility="Visible">
-                            <StackPanel>
-                                <TextBlock Text="Name:"
-                                           Foreground="{DynamicResource MahApps.Brushes.Text}"
-                                           FontSize="12"
-                                           Margin="10,0,0,0"/>
-                                <TextBox x:Name="ZenbarName"
-                                         Margin="10"
-                                         IsReadOnly="True"/>
-                                
-                                <TextBlock Text="Address:"
-                                           Foreground="{DynamicResource MahApps.Brushes.Text}"
-                                           FontSize="12"
-                                           Margin="10,0,0,0"/>
-                                <TextBox x:Name="ZenbarAddress"
-                                         Margin="10"
-                                         IsReadOnly="True"/>
-                                
-                                <TextBlock Text="Phone:"
-                                           Foreground="{DynamicResource MahApps.Brushes.Text}"
-                                           FontSize="12"
-                                           Margin="10,0,0,0"/>
-                                <TextBox x:Name="ZenbarPhone"
-                                         Margin="10"
-                                         IsReadOnly="True"/>
-
-                                <TextBlock Text="Email:"
-                                           Foreground="{DynamicResource MahApps.Brushes.Text}"
-                                           FontSize="12"
-                                           Margin="10,0,0,0"/>
-                                <TextBox x:Name="ZenbarEmail"
-                                         Margin="10"
-                                         IsReadOnly="True"/>
-
-                                <TextBlock Text="Label(s):"
-                                           Foreground="{DynamicResource MahApps.Brushes.Text}"
-                                           FontSize="12"
-                                           Margin="10,0,0,0"/>
-                                <TextBox x:Name="ZenbarLabel"
-                                         Margin="10"
-                                         IsReadOnly="True"/>
-                            </StackPanel>
-                        </ScrollViewer>
                     </StackPanel>
                 </Grid>
             </TabItem>
@@ -235,24 +160,24 @@
                         <RowDefinition Height="140"/>
                     </Grid.RowDefinitions>
 
-                    <StackPanel Grid.Column="0">
-                        <DataGrid x:Name="UsersGrid"
-                                  ItemsSource="{Binding UsersDataGridbase}"
-                                  IsReadOnly="True"
-                                  AutoGenerateColumns="False"
-                                  SelectionMode="Single"
-                                  Background="{DynamicResource MahApps.Brushes.Control.Background}"
-                                  Foreground="{DynamicResource MahApps.Brushes.Text}"
-                                  AlternatingRowBackground="{DynamicResource MahApps.Brushes.Control.Alternate}"
-                                  GridLinesVisibility="Horizontal">
-                            <DataGrid.Columns>
-                                <DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="Auto"/>
-                                <DataGridTextColumn Header="Username" Binding="{Binding username}" Width="*"/>
-                                <DataGridTextColumn Header="Admin?" Binding="{Binding is_admin}" Width="*"/>
-                            </DataGrid.Columns>
-                        </DataGrid>
-                    </StackPanel>
-
+                    <DataGrid x:Name="UsersGrid"
+                              ItemsSource="{Binding UsersDataGridbase}"                              
+                              IsReadOnly="True"
+                              Grid.Row="0"
+                              Grid.Column="0"
+                              AutoGenerateColumns="False"
+                              SelectionMode="Single"
+                              Background="{DynamicResource MahApps.Brushes.Control.Background}"
+                              Foreground="{DynamicResource MahApps.Brushes.Text}"
+                              AlternatingRowBackground="{DynamicResource MahApps.Brushes.Control.Alternate}"
+                              GridLinesVisibility="Horizontal">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="Auto"/>
+                            <DataGridTextColumn Header="Username" Binding="{Binding username}" Width="*"/>
+                            <DataGridTextColumn Header="Admin?" Binding="{Binding is_admin}" Width="*"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    
                     <StackPanel Grid.Column="3">
                         <TextBlock Text="Actions"
                                    HorizontalAlignment="Center"
@@ -284,7 +209,6 @@
                                    FontWeight="Light"/>
                         </StackPanel>
                     </Border>
-
                 </Grid>
             </TabItem>
         </mah:MetroAnimatedSingleRowTabControl>
@@ -302,4 +226,50 @@
             <StatusBarItem Content="{Binding WindowStatus}"/>
         </StatusBar>
     </Grid>
+
+    <!--when loading project, vs will alert, "var" is not found. ignore it-->
+    <mah:MetroWindow.Flyouts>
+        <mah:FlyoutsControl>
+            <mah:Flyout x:Name="Zenbar"
+                        Position="Bottom"
+                        Theme="Dark"
+                        Width="Auto">
+                <Grid>
+                    <ScrollViewer VerticalScrollBarVisibility="Auto"
+                                  MaxHeight="500">
+                        <StackPanel Margin="20">
+                            <iconPacks:PackIconMaterial Kind="GlassCocktail" Foreground="MediumPurple" Margin="10"/>
+                            <TextBlock Text="Zenbar"
+                                   FontWeight="Bold"
+                                   FontSize="36"
+                                   FontFamily="Segoe UI"
+                                   Foreground="MediumPurple"
+                                   Margin="0,0,0,20"/>
+
+                            <TextBlock Text="Name:" FontWeight="Bold"/>
+                            <TextBlock Text="{Binding name}"/>
+
+                            <TextBlock Text="Email:" FontWeight="Bold" Margin="0,10,0,0"/>
+                            <TextBlock Text="{Binding email}"/>
+
+                            <TextBlock Text="Phone:" FontWeight="Bold" Margin="0,10,0,0"/>
+                            <TextBlock Text="{Binding phone}"/>
+
+                            <TextBlock Text="Address/Location:" FontWeight="Bold" Margin="0,10,0,0"/>
+                            <TextBlock Text="{Binding address}"/>
+
+                            <TextBlock Text="IP Address:" FontWeight="Bold" Margin="0,10,0,0"/>
+                            <TextBlock Text="{Binding ipaddress}"/>
+
+                            <TextBlock Text="Label(s):" FontWeight="Bold" Margin="0,10,0,0"/>
+                            <TextBlock Text="{Binding labels}"/>
+
+                            <TextBlock Text="Socials:" FontWeight="Bold" Margin="0,10,0,0"/>
+                            <TextBlock Text="{Binding socials}"/>
+                        </StackPanel>
+                    </ScrollViewer>
+                </Grid>
+            </mah:Flyout>
+        </mah:FlyoutsControl>
+    </mah:MetroWindow.Flyouts>
 </mah:MetroWindow>

@@ -1,10 +1,15 @@
-﻿using ControlzEx;
+﻿using CipherView.People;
+using ControlzEx;
 using ControlzEx.Theming;
+using MahApps.Metro.Controls;
+using MahApps.Metro.IconPacks;
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -14,10 +19,9 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Media.Media3D;
 using System.Windows.Shapes;
 using static CipherView.MySQLCommands;
-using CipherView.People;
-using MahApps.Metro.Controls;
 
 namespace CipherView
 {
@@ -36,8 +40,6 @@ namespace CipherView
             ConnectedIpAddress = MainWindow.ConnectAddress;
             WindowStatus = "MySQL Connection was successful.";
             DataContext = this;
-
-            PeopleGrid.LoadingRow += PeopleGrid_LoadingRow;
 
             try
             {
@@ -65,7 +67,7 @@ namespace CipherView
 
         public void RefreshDataGrid()
         {
-            
+
             PeopleGrid.ItemsSource = null;
             PeopleGrid2.ItemsSource = null;
             UsersGrid.ItemsSource = null;
@@ -95,36 +97,41 @@ namespace CipherView
                 MessageBox.Show("Error while refreshing: " + ex.Message);
             }
         }
-        private void PeopleGrid_LoadingRow(object sender, DataGridRowEventArgs e)
-        {
-            if (e.Row.ContextMenu != null)
-            {
-                foreach (var item in e.Row.ContextMenu.Items)
-                {
-                    if (item is MenuItem menuItem)
-                    {
-                        menuItem.Click -= MenuItem_ContextMenuClick; // Remove first to avoid duplicates
-                        menuItem.Click += MenuItem_ContextMenuClick;
-                    }
-                }
-            }
-        }
 
-        private void MenuItem_ContextMenuClick(object sender, RoutedEventArgs e)
+        // context menu
+        private void DataGrid_LoadingRow(object sender, DataGridRowEventArgs e)
         {
-            if (sender is MenuItem menuItem)
-            {
-                string? tag = menuItem.Tag?.ToString();
+            ContextMenu contextMenu = new();
 
-                if (tag == "Zenbar")
-                {
-                    ShowZenbar(sender, e);
-                }
-                else if (tag == "Delete")
-                {
-                    // Your delete code here
-                }
-            }
+            // xaml wants to fuck me over so we're going with this
+
+            //zenbar
+            MenuItem zenbarItem = new() { Header = "Open in Zenbar" };
+            zenbarItem.Click += MenuItem_Zenbar;
+            zenbarItem.Icon = new MahApps.Metro.IconPacks.PackIconMaterial
+            {
+                Kind = PackIconMaterialKind.GlassCocktail,
+                Width = 16,
+                Height = 16,
+                Margin = new Thickness(10,0,10,0),
+            };
+
+            //delete button
+            MenuItem deleteItem = new() { Header = "Delete" };
+            deleteItem.Click += Button_Deleteperson;
+            deleteItem.Icon = new MahApps.Metro.IconPacks.PackIconMaterial
+            {
+                Kind = PackIconMaterialKind.DeleteCircle,
+                Width = 16,
+                Height = 16,
+                Margin = new Thickness(10,0,10,0)
+            };
+
+            // must add a new button once a new button has been made or else its not there
+            contextMenu.Items.Add(zenbarItem);
+            contextMenu.Items.Add(deleteItem);
+
+            e.Row.ContextMenu = contextMenu;
         }
 
         private void Button_Settings(object sender, RoutedEventArgs e)
@@ -199,26 +206,18 @@ namespace CipherView
             // add later
         }
 
-        private void ShowZenbar(object sender, RoutedEventArgs e)
+        private void MenuItem_Zenbar(object sender, RoutedEventArgs e)
         {
             if (PeopleGrid.SelectedItem is FetchedData selected)
             {
-                if (Zenbar.Visibility == Visibility.Collapsed)
-                {
-                    ZENPlaceholder.Visibility = Visibility.Collapsed;
-                    Zenbar.Visibility = Visibility.Visible;
-
-                    ZenbarName.Text = selected.name;
-                    ZenbarAddress.Text = selected.address;
-                    ZenbarEmail.Text = selected.email;
-                    ZenbarLabel.Text = selected.labels;
-                    ZenbarPhone.Text = selected.phone;
-                }
-                else
-                {
-                    Zenbar.Visibility = Visibility.Collapsed;
-                }
+                Zenbar.DataContext = selected;
+                Zenbar.IsOpen = true;
             }
+        }
+
+        private void Button_Deleteperson(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Delete function will be added later");
         }
     }
 }
