@@ -1,4 +1,4 @@
-﻿# CipherView
+# CipherView
 CipherView is Cipherstorm in desktop to put it simply.
 
 # features
@@ -8,5 +8,3 @@ CipherView is Cipherstorm in desktop to put it simply.
 # authors
 - [@absolutegoaat](https://github.com/absolutegoaat)
 - [@brainrot02](https://github.com/brainrot02back)
-
-toriel please let me hit
