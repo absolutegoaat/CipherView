@@ -6,6 +6,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CipherView"
         mc:Ignorable="d"
+        TitleAlignment="Center"
         Title="CipherView - Add Person" Height="655" Width="1073">
     <Grid>
         <mah:MetroAnimatedSingleRowTabControl Margin="15">
@@ -43,32 +44,7 @@
 
                         <Label Content="Label(s):" FontWeight="Bold" FontSize="14"/>
                         <TextBox x:Name="PersonLabels" FontSize="16" Padding="6" Margin="0,0,0,10"/>
-                    </StackPanel>
-
-                    <Separator Grid.Column="1" 
-                                   Width="2" 
-                                   Margin="10,0" 
-                                   VerticalAlignment="Stretch"
-                                   Grid.RowSpan="2"/>
-
-                    <StackPanel Grid.Column="2" Orientation="Vertical">
-                        <Label Content="Socials:" FontWeight="Bold" FontSize="14"/>
-                        <TextBox x:Name="PersonSocials"
-                                 FontSize="15" 
-                                 Padding="6" 
-                                 TextWrapping="Wrap"
-                                 AcceptsReturn="True"
-                                 VerticalScrollBarVisibility="Auto"
-                                 Margin="0,0,0,10"/>
-
-                        <Label Content="Description:" FontWeight="Bold" FontSize="14"/>
-                        <TextBox x:Name="PersonDesc"
-                                 FontSize="15"
-                                 AcceptsReturn="True"
-                                 Padding="6"
-                                 TextWrapping="Wrap"
-                                 VerticalScrollBarVisibility="Auto"/>
-
+                        
                         <StatusBar Background="Gray" 
                                        FontWeight="SemiBold" 
                                        Padding="5"
@@ -82,6 +58,28 @@
                                         Style="{DynamicResource MahApps.Styles.Button.MetroWindow.Base}"/>
                         </StatusBar>
                     </StackPanel>
+
+                    <ScrollViewer VerticalScrollBarVisibility="Auto"
+                                  Grid.Column="2">
+                        <StackPanel Grid.Column="2" Orientation="Vertical">
+                            <Label Content="Socials:" FontWeight="Bold" FontSize="14"/>
+                            <TextBox x:Name="PersonSocials"
+                                 FontSize="15" 
+                                 Padding="6" 
+                                 TextWrapping="Wrap"
+                                 AcceptsReturn="True"
+                                 VerticalScrollBarVisibility="Auto"
+                                 Margin="0,0,0,10"/>
+
+                            <Label Content="Description:" FontWeight="Bold" FontSize="14"/>
+                            <TextBox x:Name="PersonDesc"
+                                 FontSize="15"
+                                 AcceptsReturn="True"
+                                 Padding="6"
+                                 TextWrapping="Wrap"
+                                 VerticalScrollBarVisibility="Auto"/>
+                        </StackPanel>
+                    </ScrollViewer>
                 </Grid>
             </TabItem>
         </mah:MetroAnimatedSingleRowTabControl>

@@ -154,12 +154,6 @@
                         <ColumnDefinition Width="300"/>
                     </Grid.ColumnDefinitions>
 
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="140"/>
-                    </Grid.RowDefinitions>
-
                     <DataGrid x:Name="UsersGrid"
                               ItemsSource="{Binding UsersDataGridbase}"                              
                               IsReadOnly="True"
@@ -177,7 +171,7 @@
                             <DataGridTextColumn Header="Admin?" Binding="{Binding is_admin}" Width="*"/>
                         </DataGrid.Columns>
                     </DataGrid>
-                    
+
                     <StackPanel Grid.Column="3">
                         <TextBlock Text="Actions"
                                    HorizontalAlignment="Center"
@@ -196,22 +190,11 @@
                                 Style="{DynamicResource MahApps.Styles.Button.Dialogs}"
                                 Click="Button_AddUser"/>
                     </StackPanel>
-
-                    <Border Grid.Row="3"
-                            BorderBrush="{DynamicResource MahApps.Brushes.Border.NonActive}"
-                            BorderThickness="0,2,0,0">
-                        <StackPanel Grid.Row="3">
-                            <TextBlock Text="Viewing User data will be added later"
-                                   Margin="5"
-                                   TextAlignment="Center"
-                                   FontSize="26"
-                                   FontStyle="Italic"
-                                   FontWeight="Light"/>
-                        </StackPanel>
-                    </Border>
                 </Grid>
             </TabItem>
         </mah:MetroAnimatedSingleRowTabControl>
+        
+        
 
         <StatusBar VerticalAlignment="Bottom"
                    Background="{DynamicResource MahApps.Brushes.Accent}"
