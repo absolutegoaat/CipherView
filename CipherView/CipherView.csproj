@@ -11,6 +11,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Users\**" />
+    <EmbeddedResource Remove="Users\**" />
+    <None Remove="Users\**" />
+    <Page Remove="Users\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Include="icon.ico" />
   </ItemGroup>
 
@@ -18,10 +25,6 @@
     <PackageReference Include="MahApps.Metro" Version="2.4.11" />
     <PackageReference Include="MahApps.Metro.IconPacks" Version="6.1.0" />
     <PackageReference Include="MySql.Data" Version="9.4.0" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Users\" />
   </ItemGroup>
 
 </Project>

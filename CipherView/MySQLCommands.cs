@@ -1,11 +1,5 @@
-﻿using Google.Protobuf.Compiler;
-using MySql.Data.MySqlClient;
-using System;
-using System.Collections.Generic;
+﻿using MySql.Data.MySqlClient;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 #pragma warning disable IDE1006 // filling up my error list so annoying
 
@@ -153,6 +147,24 @@ namespace CipherView
             {
                 MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
+        }
+
+        public static void DeletePersonConfirmation()
+        {
+            var confirmation = MessageBox.Show("Are you sure you want to DELETE this person? This action is irreversable!", "Confirmation", MessageBoxButton.YesNo);
+
+            switch (confirmation)
+            {
+                case MessageBoxResult.Yes:
+                    break;
+                case MessageBoxResult.No:
+                    break;
+            }
+        }
+
+        public static void DeletePerson()
+        {
+
         }
 
         /*
