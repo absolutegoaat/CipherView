@@ -177,7 +177,7 @@ namespace CipherView
         private void Button_About2(object sender, RoutedEventArgs e)
         {
             // we can change this later
-            MessageBox.Show("CipherView v1.0\nDeveloped by absolutegoaat\n\nAn Administrative database viewer for CipherStorm.\n\nContributors:\nbrainrot02", "About CipherView", MessageBoxButton.OK, MessageBoxImage.Information);
+            MessageBox.Show("CipherView v1.1 UNSTABLE (DEVELOPER BRANCH)\nDeveloped by absolutegoaat\n\nAn Administrative database viewer for CipherStorm.\n\nContributors:\nbrainrot02", "About CipherView", MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
         private void PeopleGrid2_MouseDoubleClick(object sender, MouseButtonEventArgs e)
